@@ -1,0 +1,46 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+
+    "presence": {
+      ".read": "auth != null",
+      "$uid": {
+        ".write": "auth != null && auth.uid === $uid",
+        ".validate": "!newData.exists() || newData.hasChildren(['n', 'z', 't'])",
+        "n": { ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 30" },
+        "z": { ".validate": "newData.val() === 'san' || newData.val() === 'dien'" },
+        "t": { ".validate": "newData.val() === now" },
+        "$khac": { ".validate": false }
+      }
+    },
+
+    "events": {
+      ".read": "auth != null",
+      ".indexOn": ["t"],
+      "$id": {
+        ".write": "auth != null && ((!data.exists() && newData.child('u').val() === auth.uid) || (!newData.exists() && (data.child('t').val() < now - 86400000 || (auth.token.email === 'EMAIL_QUAN_TRI@gmail.com' && auth.token.email_verified === true))))",
+        ".validate": "!newData.exists() || newData.hasChildren(['u', 'n', 'k', 't'])",
+        "u": { ".validate": "newData.isString()" },
+        "n": { ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 30" },
+        "k": { ".validate": "newData.isString() && newData.val().matches(/^(lon|giatri|huong|xam)$/)" },
+        "t": { ".validate": "newData.val() === now" },
+        "$khac": { ".validate": false }
+      }
+    },
+
+    "loinguyen": {
+      ".read": "auth != null",
+      ".indexOn": ["t"],
+      "$id": {
+        ".write": "auth != null && ((!data.exists() && newData.child('u').val() === auth.uid) || (!newData.exists() && auth.token.email === 'EMAIL_QUAN_TRI@gmail.com' && auth.token.email_verified === true))",
+        ".validate": "!newData.exists() || newData.hasChildren(['u', 'n', 'm', 't'])",
+        "u": { ".validate": "newData.isString()" },
+        "n": { ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 30" },
+        "m": { ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 200" },
+        "t": { ".validate": "newData.val() === now" },
+        "$khac": { ".validate": false }
+      }
+    }
+  }
+}

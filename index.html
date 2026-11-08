@@ -1,0 +1,1667 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tiếng Chuông Thiên Mụ</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Ghé chùa Thiên Mụ bên dòng Hương: thỉnh chuông, thắp hương, xin xăm, thả hoa đăng cùng mọi người.">
+<meta name="theme-color" content="#e8ede8">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Lexend:wght@300;400;500;600&display=swap&subset=vietnamese" rel="stylesheet">
+<style>
+/* Bố cục: điện thoại một cột (tiêu đề → vào chùa → khung cảnh sống); máy tính: chữ bên trái, cảnh bên phải.
+   Vào chùa thì cảnh phủ kín màn hình, thanh công cụ nổi ở đáy. Màu: sương Hương Giang, tím Huế, vàng hoàng thổ, son đỏ. */
+:root{
+ --bg:#e8ede8; --card:#f7f9f5; --paper:#fbf7ea; --ink:#271f33; --ink2:#62596e; --line:#d2d9d0;
+ --tim:#56377a; --on-tim:#ffffff; --vang:#9c701b; --son:#9d3024; --on-son:#ffffff; --ngoc:#2f6f67;
+ --hud:rgba(247,249,245,.9); --hud-ink:#271f33; --shadow:rgba(30,20,45,.2);
+ --chip:rgba(250,248,242,.92); --chip-ink:#271f33;
+ --f-display:"Cormorant Garamond","Noto Serif",Georgia,"Times New Roman",serif;
+ --f-body:"Lexend","Segoe UI",Roboto,system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --bg:#14111b; --card:#1e1927; --paper:#251f2f; --ink:#efe9f5; --ink2:#a99fb7; --line:#352d42;
+ --tim:#bb9ade; --on-tim:#1a1325; --vang:#dcb05a; --son:#dd6f5f; --on-son:#1a1010; --ngoc:#7fc0b3;
+ --hud:rgba(30,25,39,.88); --hud-ink:#efe9f5; --shadow:rgba(0,0,0,.5); color-scheme:dark}}
+:root[data-theme="dark"]{
+ --bg:#14111b; --card:#1e1927; --paper:#251f2f; --ink:#efe9f5; --ink2:#a99fb7; --line:#352d42;
+ --tim:#bb9ade; --on-tim:#1a1325; --vang:#dcb05a; --son:#dd6f5f; --on-son:#1a1010; --ngoc:#7fc0b3;
+ --hud:rgba(30,25,39,.88); --hud-ink:#efe9f5; --shadow:rgba(0,0,0,.5); color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased}
+body.inside{overflow:hidden;height:100%}
+button{font:inherit;color:inherit;cursor:pointer}
+button:disabled{opacity:.45;cursor:default}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--vang);outline-offset:2px}
+
+/* ---------- Màn đầu ---------- */
+#landing{max-width:1140px;margin:0 auto;padding-block:18px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+ display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"top" "text" "join" "card" "note";row-gap:18px;transition:opacity .8s}
+body.inside #landing{opacity:0;pointer-events:none}
+@media (min-width:880px){#landing{grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);grid-template-areas:"top card" "text card" "join card" "note card";column-gap:56px;row-gap:22px;padding-block:44px 56px;align-items:start}}
+.top{grid-area:top;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-size:23px;font-weight:700;letter-spacing:.01em;line-height:1}
+.brand svg{width:26px;height:26px;color:var(--vang);flex:none}
+.pill{border:1px solid var(--line);background:transparent;padding:7px 14px;border-radius:999px;font-size:13.5px;color:var(--ink2);white-space:nowrap}
+.text{grid-area:text;min-width:0}
+.cadao{font-family:var(--f-display);font-style:italic;font-weight:500;font-size:19px;line-height:1.4;color:var(--vang);margin:6px 0 14px}
+.cadao span{display:block}.cadao span:first-child{padding-left:1.3em}
+h1{font-family:var(--f-display);font-weight:600;font-size:clamp(38px,7.6vw,62px);line-height:1.02;letter-spacing:-.012em;margin:0;text-wrap:balance}
+.sub{color:var(--ink2);font-size:16px;line-height:1.65;margin:16px 0 0;max-width:44ch;font-weight:300}
+#join{grid-area:join;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;min-width:0}
+.live{display:flex;align-items:center;gap:9px;font-weight:500;font-size:16px}
+.live i{width:9px;height:9px;border-radius:50%;background:var(--ngoc);box-shadow:0 0 0 4px color-mix(in srgb,var(--ngoc) 22%,transparent);flex:none}
+.muted{color:var(--ink2);font-size:13px;margin-top:2px}
+.joinRow{display:flex;gap:10px;margin-top:13px}
+#joinName{flex:1;min-width:0;font:inherit;font-size:16px;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+#joinName::placeholder{color:var(--ink2)}
+.primary{border:0;background:var(--tim);color:var(--on-tim);border-radius:14px;padding:12px 18px;font-weight:500;white-space:nowrap}
+.primary.wide{width:100%;padding:13px 18px}
+#joinNote{color:var(--son);font-size:13px;margin-top:8px;min-height:1.2em}
+#solo{font-size:12.5px;color:var(--ink2);border-top:1px dashed var(--line);margin-top:10px;padding-top:10px}
+#solo[hidden]{display:none}
+#card{grid-area:card;position:relative;border-radius:24px;overflow:hidden;aspect-ratio:1/1;max-width:100%;background:#9cc4c0;box-shadow:0 24px 60px -30px var(--shadow)}
+@media (min-width:880px){#card{aspect-ratio:4/5;position:sticky;top:24px}}
+.chips{position:absolute;left:12px;top:12px;right:12px;display:flex;flex-wrap:wrap;gap:6px;z-index:2;pointer-events:none}
+.chip{background:var(--chip);color:var(--chip-ink);border-radius:999px;padding:5px 11px;font-size:12.5px;font-weight:500}
+.note{grid-area:note;font-size:12.5px;color:var(--ink2);line-height:1.6;margin:0;max-width:56ch}
+
+/* ---------- Sân khấu ---------- */
+#stage{position:absolute;inset:0;overflow:hidden;background:var(--sceneBg,#3f7f79);touch-action:manipulation}
+body.inside #stage{position:fixed;inset:0;z-index:5}
+body.dien #stage{background:#1a0a06}
+#stage svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;transition:opacity .9s;user-select:none;-webkit-user-select:none}
+#stage svg.off{opacity:0;pointer-events:none}
+#san.zoom{transition:transform 1.7s cubic-bezier(.5,0,.78,.35),opacity .7s 1.05s;opacity:0}
+.tap{cursor:pointer}
+text{font-family:var(--f-body)}
+.sway{transform-box:view-box;animation:sway 6.5s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-1.2deg)}50%{transform:rotate(1.5deg)}}
+.flut{transform-box:fill-box;transform-origin:0 50%;animation:flut 3.4s ease-in-out infinite}
+@keyframes flut{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(9deg)}}
+.cloud{animation:drift 170s linear infinite}
+@keyframes drift{from{transform:translateX(-1000px)}to{transform:translateX(1600px)}}
+.rip{animation:rip 6s ease-in-out infinite}
+@keyframes rip{0%,100%{transform:translateX(0);opacity:.1}50%{transform:translateX(14px);opacity:.6}}
+.twk{animation:twk 2.6s ease-in-out infinite}
+@keyframes twk{0%,100%{opacity:.15}50%{opacity:1}}
+.wing{transform-box:fill-box;transform-origin:50% 100%;animation:flap .95s ease-in-out infinite}
+@keyframes flap{0%,100%{transform:scaleY(1)}50%{transform:scaleY(-.45)}}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flick .2s ease-in-out infinite alternate}
+@keyframes flick{to{transform:scale(.85,1.1)}}
+.smoke{fill:none;stroke:#efe9e0;stroke-width:1.3;stroke-linecap:round;opacity:0;animation:smoke 5.5s linear infinite}
+@keyframes smoke{0%{opacity:0;transform:translateY(0)}15%{opacity:.5}100%{opacity:0;transform:translateY(-64px)}}
+.wake{animation:wake 2.4s ease-out infinite;transform-box:fill-box;transform-origin:100% 50%}
+@keyframes wake{from{opacity:.55;transform:scaleX(.4)}to{opacity:0;transform:scaleX(1.4)}}
+.swing{transform-box:fill-box;transform-origin:50% 0;animation:swing 1.6s ease-out}
+@keyframes swing{15%{transform:rotate(-9deg)}40%{transform:rotate(6deg)}65%{transform:rotate(-2.5deg)}100%{transform:rotate(0)}}
+.knock{transform-box:fill-box;transform-origin:50% 100%;animation:knock .22s}
+@keyframes knock{50%{transform:scale(1.08,.92)}}
+.pulse{animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.2}50%{opacity:.85}}
+.night{opacity:var(--glow,0);transition:opacity 2s}
+
+/* ---------- Thanh công cụ trong chùa ---------- */
+.hud{position:fixed;z-index:8;display:none}
+body.inside .hud{display:flex}
+#hudTL{left:calc(env(safe-area-inset-left,0px) + 12px);top:calc(env(safe-area-inset-top,0px) + 12px);gap:8px}
+#hudTR{right:calc(env(safe-area-inset-right,0px) + 12px);top:calc(env(safe-area-inset-top,0px) + 12px);gap:8px}
+.hbtn{border:0;background:var(--hud);color:var(--hud-ink);border-radius:999px;padding:8px 13px;font-size:13.5px;font-weight:500;box-shadow:0 4px 16px var(--shadow);display:flex;align-items:center;gap:7px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.hbtn svg{width:16px;height:16px;flex:none}
+#bar{left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 14px);gap:2px;padding:6px;border-radius:24px;background:var(--hud);box-shadow:0 10px 30px var(--shadow);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+#bar button{width:63px;border:0;background:transparent;border-radius:18px;padding:7px 2px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--hud-ink);font-size:10.5px;font-weight:500;line-height:1.1;transition:transform .12s}
+#bar button svg{width:26px;height:26px}
+#bar button:active{transform:scale(.92)}
+#bar button.wait{opacity:.45}
+
+/* ---------- Bảng trượt ---------- */
+#scrim{position:fixed;inset:0;z-index:11;background:rgba(10,6,16,.32);opacity:0;pointer-events:none;transition:opacity .3s}
+#scrim.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:12;max-width:560px;margin:0 auto;max-height:88vh;display:flex;flex-direction:column;background:var(--card);color:var(--ink);
+ border-radius:22px 22px 0 0;box-shadow:0 -12px 40px var(--shadow);transform:translateY(105%);transition:transform .45s cubic-bezier(.2,.8,.2,1);padding-bottom:env(safe-area-inset-bottom,0px);visibility:hidden}
+.sheet.open{transform:none;visibility:visible}
+.sh-hd{display:flex;justify-content:space-between;align-items:center;padding:16px 18px 6px;gap:10px}
+.sh-hd h2{margin:0;font-family:var(--f-display);font-size:26px;font-weight:600;line-height:1.1}
+.x{border:0;background:none;color:var(--ink2);font-size:24px;padding:2px 8px;line-height:1}
+.sh-body{overflow-y:auto;padding:4px 18px 20px;-webkit-overflow-scrolling:touch;min-height:0}
+textarea{font:inherit;font-size:16px;width:100%;border:1px solid var(--line);border-radius:14px;padding:11px 12px;background:var(--bg);color:var(--ink);resize:none;height:88px;display:block}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px}
+.row small{color:var(--ink2);font-size:12.5px}
+.msg{padding:12px 0;border-top:1px solid var(--line);position:relative}
+.msg .n{font-weight:500;font-size:14px}.msg .t{color:var(--ink2);font-size:12px;margin-left:6px}
+.msg p{margin:3px 0 0;font-size:15px;line-height:1.55;white-space:pre-wrap;word-break:break-word}
+.tag-mau{font-size:11px;color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:0 6px;margin-left:6px}
+.del{position:absolute;right:0;top:10px;border:0;background:var(--son);color:var(--on-son);border-radius:10px;font-size:12px;padding:3px 10px}
+.empty{color:var(--ink2);text-align:center;padding:18px 0;font-size:14px}
+.linkbtn{border:0;background:none;color:var(--ink2);font-size:12px;padding:10px;display:block;margin:4px auto 0;text-decoration:underline;text-underline-offset:3px}
+.grp{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--vang);font-weight:600;margin:14px 0 8px}
+.ppl{display:flex;flex-wrap:wrap;gap:6px}.ppl span{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:14px}
+
+/* ---------- Xin xăm ---------- */
+.lead{margin:2px 0 0;color:var(--ink2);font-size:15px;line-height:1.55}
+.choices{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 16px}
+.choice{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:8px 15px;font-size:14.5px}
+.choice[aria-checked="true"]{background:var(--tim);color:var(--on-tim);border-color:var(--tim)}
+.fine{font-size:12.5px;color:var(--ink2);margin:14px 0 0;line-height:1.55}
+.xam-stage{display:flex;justify-content:center;align-items:flex-end;height:220px;margin:8px 0 12px;position:relative}
+.xam-stage svg{height:100%;width:auto;overflow:visible}
+.shake{animation:shake .15s ease-in-out 10 alternate;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes shake{from{transform:rotate(-10deg) translateX(-3px)}to{transform:rotate(10deg) translateX(3px)}}
+#theRoi{transition:transform .6s cubic-bezier(.3,.6,.4,1)}
+.so-the{display:flex;align-items:center;justify-content:center;gap:14px;margin:6px 0 4px}
+.so-the .the{width:16px;height:120px;border-radius:3px;background:linear-gradient(var(--son) 0 14%,#d9b072 14%);box-shadow:0 2px 8px var(--shadow);transform:rotate(-8deg)}
+.so-the b{font-family:var(--f-display);font-size:54px;line-height:1;font-weight:700;color:var(--son)}
+.so-the small{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+.keo-stage{display:flex;justify-content:center;gap:34px;height:120px;align-items:flex-end;margin:10px 0 6px}
+.keo{width:72px;text-align:center;font-size:12px;color:var(--ink2)}
+.keo svg{width:72px;height:56px;display:block;margin:0 auto 4px;overflow:visible}
+.toss{animation:toss .75s cubic-bezier(.3,.7,.4,1)}
+@keyframes toss{0%{transform:translateY(0) rotate(0)}40%{transform:translateY(-70px) rotate(300deg)}100%{transform:translateY(0) rotate(720deg)}}
+.keo-kq{min-height:3em;text-align:center;font-size:14.5px;margin:8px 0 12px;line-height:1.5}
+.keo-kq.ok{color:var(--ngoc);font-weight:500}
+.laxam{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px 18px 14px;margin-top:6px}
+.lx-hd{display:flex;gap:14px;align-items:center}
+.seal{width:64px;height:64px;border:2px solid var(--son);color:var(--son);border-radius:10px;display:grid;place-items:center;text-align:center;font-family:var(--f-display);line-height:1;transform:rotate(-4deg);flex:none}
+.seal small{display:block;font-family:var(--f-body);font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+.seal b{display:block;font-size:30px;font-weight:700;margin-top:2px}
+.lx-hd h3{margin:4px 0 0;font-family:var(--f-display);font-size:25px;font-weight:600;line-height:1.1}
+.rank{display:inline-block;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:3px 9px;border-radius:999px}
+.r-dai{background:var(--son);color:var(--on-son)}
+.r-thuong{background:color-mix(in srgb,var(--vang) 20%,transparent);color:var(--vang)}
+.r-trung{background:color-mix(in srgb,var(--ngoc) 18%,transparent);color:var(--ngoc)}
+.r-ha{background:color-mix(in srgb,var(--ink2) 16%,transparent);color:var(--ink2)}
+.tho{font-family:var(--f-display);font-style:italic;font-weight:500;font-size:clamp(18px,5.2vw,23px);line-height:1.42;margin:16px 0 14px}
+.tho span{display:block}.tho span:nth-child(odd){padding-left:1.25em}
+.ban{margin:0;font-size:15px;line-height:1.6}
+.giai{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.giai h4{margin:0 0 4px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--vang);font-weight:600}
+.giai p{margin:0;font-size:15px;line-height:1.6}
+.giai dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 12px;font-size:14px;line-height:1.5}
+.giai dt{color:var(--ink2);white-space:nowrap}.giai dd{margin:0}
+details.khac{margin-top:12px}details.khac summary{cursor:pointer;color:var(--ink2);font-size:13.5px}
+details.khac[open] summary{margin-bottom:10px}
+.cu{font-size:12.5px;color:var(--ink2);margin:0 0 8px}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.btnrow>*{flex:1 1 160px}
+.ghost{border:1px solid var(--line);background:transparent;border-radius:14px;padding:12px 16px;color:var(--ink)}
+
+/* ---------- Thông báo ---------- */
+#toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 62px);transform:translate(-50%,-10px);opacity:0;z-index:20;max-width:min(88vw,460px);
+ background:var(--hud);color:var(--hud-ink);padding:9px 16px;border-radius:16px;font-size:14px;transition:.4s;pointer-events:none;text-align:center;box-shadow:0 6px 22px var(--shadow);line-height:1.45}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+#welcome{position:fixed;left:0;right:0;top:24%;z-index:9;text-align:center;pointer-events:none;opacity:0;padding:34px 24px;color:#fffaf0;
+ background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(22,14,34,.62),rgba(22,14,34,0));
+ text-shadow:0 2px 14px rgba(20,12,30,.8),0 0 2px rgba(20,12,30,.7);transition:opacity 1.2s}
+#welcome.show{opacity:1}
+#welcome small{display:block;letter-spacing:.3em;font-size:12px;font-weight:600;margin-bottom:12px}
+#welcome b{display:block;font-family:var(--f-display);font-style:italic;font-weight:600;font-size:clamp(26px,6vw,40px);line-height:1.25}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (prefers-reduced-motion:reduce){.sway,.flut,.cloud,.rip,.twk,.wing,.smoke,.wake,.pulse,.flame{animation:none}.smoke{opacity:0}#san.zoom{transition:opacity .4s}}
+</style>
+
+</head>
+<body>
+<div id="landing">
+ <div class="top">
+  <div class="brand"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="11.3" y="1" width="1.4" height="3"/><path d="M9.6 4h4.8l.4 2.4H9.2zM8.8 7.2h6.4l.4 2.6H8.4zM8 10.6h8l.4 2.8H7.6zM7.2 14.2h9.6l.4 3H6.8zM6.2 18h11.6l.5 3.4H5.7z"/></svg><span>Tiếng Chuông Thiên Mụ</span></div>
+  <button class="pill" id="snd1" type="button">Âm thanh: bật</button>
+ </div>
+ <div class="text">
+  <p class="cadao"><span>Gió đưa cành trúc la đà</span><span>Tiếng chuông Thiên Mụ, canh gà Thọ Xương</span></p>
+  <h1 id="tieuDe">Ghé chùa Thiên Mụ, nghe chuông bên dòng Hương</h1>
+  <p class="sub" id="moTa">Thỉnh một hồi chuông, thắp nén hương, xin một quẻ xăm và thả hoa đăng gửi lời an yên, cùng những người đang ghé thăm.</p>
+ </div>
+ <div id="join">
+  <div class="live"><i></i><span><b id="liveN">0</b> người đang có mặt</span></div>
+  <div class="muted" id="liveZ">Bến sông 0 · Chính điện 0</div>
+  <div class="joinRow"><label class="sr" for="joinName">Tên của bạn</label><input id="joinName" maxlength="24" placeholder="Tên của bạn" autocomplete="nickname"><button class="primary" id="enter" type="button">Vào chùa</button></div>
+  <div id="joinNote" role="status"></div>
+  <div id="solo" hidden>Bản xem thử: chưa nối máy chủ nên những người có chữ “mẫu” là khách minh hoạ, lời nguyện chỉ lưu trên máy này.</div>
+ </div>
+ <div id="card">
+  <div class="chips"><span class="chip" id="chipTime">Giờ Huế</span><span class="chip">Tháp Phước Duyên · 7 tầng</span></div>
+  <div id="stage">
+   <svg id="san" viewBox="0 0 600 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Chùa Thiên Mụ nhìn từ sông Hương, có con đò đang trôi">
+    <defs>
+     <linearGradient id="gSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--sky1)"/><stop offset=".72" style="stop-color:var(--sky2)"/></linearGradient>
+     <linearGradient id="gWater" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--w1)"/><stop offset=".55" style="stop-color:var(--w2)"/></linearGradient>
+     <radialGradient id="gGlow"><stop offset="0" stop-color="#ffd88f" stop-opacity=".95"/><stop offset="1" stop-color="#ffb04a" stop-opacity="0"/></radialGradient>
+     <radialGradient id="gSun"><stop offset="0" stop-color="#fff7da"/><stop offset=".35" stop-color="#ffefb8" stop-opacity=".55"/><stop offset="1" stop-color="#ffe2a6" stop-opacity="0"/></radialGradient>
+     <radialGradient id="gMoon"><stop offset="0" stop-color="#fffbe9" stop-opacity=".75"/><stop offset="1" stop-color="#d6dcff" stop-opacity="0"/></radialGradient>
+     <linearGradient id="gMist" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+     <linearGradient id="gBronze" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5e3d17"/><stop offset=".45" stop-color="#d2a24d"/><stop offset="1" stop-color="#4f3312"/></linearGradient>
+     <linearGradient id="gRoof" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a4430"/><stop offset="1" stop-color="#4e2619"/></linearGradient>
+     <clipPath id="cpRiver"><rect x="-1200" y="682" width="3000" height="700"/></clipPath>
+     <clipPath id="cpMui"><path d="M-48,-4C-48,-46 40,-46 40,-4Z"/></clipPath>
+    </defs>
+    <g id="sanRoot"></g>
+   </svg>
+   <svg id="dien" class="off" viewBox="0 0 600 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Chính điện: tượng Phật, bàn thờ, ống xăm">
+    <defs>
+     <linearGradient id="gBack" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a1a0f"/><stop offset="1" stop-color="#2c0f08"/></linearGradient>
+     <linearGradient id="gWallL" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1e0a05"/><stop offset="1" stop-color="#3d160c"/></linearGradient>
+     <linearGradient id="gWallR" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#1e0a05"/><stop offset="1" stop-color="#3d160c"/></linearGradient>
+     <linearGradient id="gFloor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4e2614"/><stop offset="1" stop-color="#7a4426"/></linearGradient>
+     <linearGradient id="gCol" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5c140c"/><stop offset=".4" stop-color="#a8301d"/><stop offset="1" stop-color="#4a0f08"/></linearGradient>
+     <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9a6a24"/><stop offset=".42" stop-color="#f2d083"/><stop offset=".7" stop-color="#cf9d45"/><stop offset="1" stop-color="#875a1c"/></linearGradient>
+     <linearGradient id="gBronze2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5e3d17"/><stop offset=".45" stop-color="#d2a24d"/><stop offset="1" stop-color="#4f3312"/></linearGradient>
+     <radialGradient id="gHalo"><stop offset="0" stop-color="#ffe8a8" stop-opacity=".55"/><stop offset=".6" stop-color="#ffcf6b" stop-opacity=".14"/><stop offset="1" stop-color="#ffcf6b" stop-opacity="0"/></radialGradient>
+     <radialGradient id="gCandle"><stop offset="0" stop-color="#ffd27e" stop-opacity=".7"/><stop offset="1" stop-color="#ff9a3c" stop-opacity="0"/></radialGradient>
+     <linearGradient id="gRay" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe7b0" stop-opacity=".26"/><stop offset="1" stop-color="#ffe7b0" stop-opacity="0"/></linearGradient>
+     <linearGradient id="gRayR" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe7b0" stop-opacity=".26"/><stop offset="1" stop-color="#ffe7b0" stop-opacity="0"/></linearGradient>
+    </defs>
+    <g id="dienRoot"></g>
+   </svg>
+  </div>
+ </div>
+ <p class="note">Trang mô phỏng phi chính thức, không phải trang của chùa Thiên Mụ. Cảnh vẽ theo giờ Huế. Nhạc đàn tranh, đàn bầu hơi Nam Ai được trình duyệt tự chơi. Quẻ xăm do trang sáng tác theo tinh thần ca dao, để chiêm nghiệm.</p>
+</div>
+
+<div id="hudTL" class="hud"><button class="hbtn" id="bPeople" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="8.5" cy="8" r="3"/><path d="M3 19c.6-3.2 2.8-5.2 5.5-5.2s4.9 2 5.5 5.2"/><path d="M15.5 5.2a2.7 2.7 0 0 1 0 5.4M16.5 13.9c2.2.4 3.8 2.3 4.3 5.1"/></svg><span id="hudN">1</span><span aria-hidden="true">·</span><span id="hudZ">Bến sông</span></button></div>
+<div id="hudTR" class="hud"><button class="hbtn" id="snd2" type="button" aria-label="Bật tắt âm thanh"></button></div>
+<div id="bar" class="hud" role="toolbar" aria-label="Việc trong chùa">
+ <button id="bChuong" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.2c-3.2 0-5.4 2.5-5.4 5.9v4.3L4.6 17h14.8l-2-3.6V9.1c0-3.4-2.2-5.9-5.4-5.9z"/><path d="M10 19.4a2 2 0 0 0 4 0M12 1.6v1.6"/></svg><span>Thỉnh chuông</span></button>
+ <button id="bHuong" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M5.5 16.5h13l-1.6 4H7.1z"/><path d="M9 16.5l.6-8M12 16.5V7.5M15 16.5l-.6-8"/><path d="M12 5.6c-1.4-1.3 1.3-2.2 0-3.8"/></svg><span>Thắp hương</span></button>
+ <button id="bXam" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="7.5" y="10" width="9" height="11" rx="1.6"/><path d="M7.5 14h9M9.6 10L8.4 3M12 10V2.4M14.4 10l1.3-6.6"/></svg><span>Xin xăm</span></button>
+ <button id="bHoa" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 20c-4.2 0-7.2-2-8.2-5.2 3 0 5 1 6.2 2.2C10 14 11 11.2 12 9.2c1 2 2 4.8 2 7.8 1.2-1.2 3.2-2.2 6.2-2.2-1 3.2-4 5.2-8.2 5.2z"/><path d="M12 6.6c.9-1 .9-2.2 0-3.2-.9 1-.9 2.2 0 3.2zM3 22h18"/></svg><span>Hoa đăng</span></button>
+ <button id="bGo" type="button"><span id="goIco"></span><span id="goLbl">Chính điện</span></button>
+</div>
+
+<div id="scrim"></div>
+<section id="sheetLoi" class="sheet" aria-labelledby="hLoi">
+ <div class="sh-hd"><h2 id="hLoi">Hoa đăng &amp; lời nguyện</h2><button class="x" data-close type="button" aria-label="Đóng">×</button></div>
+ <div class="sh-body">
+  <p class="lead">Viết một lời an yên. Hoa đăng mang tên bạn sẽ được thả trên sông Hương cho mọi người cùng thấy.</p>
+  <div style="margin-top:12px"><label class="sr" for="fMsg">Lời nguyện</label><textarea id="fMsg" maxlength="200" placeholder="Cầu cho…"></textarea></div>
+  <div class="row"><small id="fNote">Tối đa 200 ký tự</small><button class="primary" id="send" type="button">Thả hoa đăng</button></div>
+  <div class="grp" style="margin-top:20px">Lời nguyện gần đây</div>
+  <div id="list"><div class="empty">Đang tải…</div></div>
+  <button class="linkbtn" id="adm" type="button" hidden>Quản trị</button>
+ </div>
+</section>
+<section id="sheetXam" class="sheet" aria-labelledby="hXam">
+ <div class="sh-hd"><h2 id="hXam">Xin xăm</h2><button class="x" data-close type="button" aria-label="Đóng">×</button></div>
+ <div class="sh-body" id="xamBody"></div>
+</section>
+<section id="sheetPpl" class="sheet" aria-labelledby="hPpl">
+ <div class="sh-hd"><h2 id="hPpl">Đang có mặt</h2><button class="x" data-close type="button" aria-label="Đóng">×</button></div>
+ <div class="sh-body" id="ppl"></div>
+</section>
+<div id="toast" role="status" aria-live="polite"></div>
+<div id="welcome"><small>NAM MÔ A DI ĐÀ PHẬT</small><b>Gió đưa cành trúc la đà<br>Tiếng chuông Thiên Mụ, canh gà Thọ Xương</b></div>
+
+<script type="module">
+/* =====================================================================
+   CẤU HÌNH — chỉ cần sửa trong khung này
+   ===================================================================== */
+const CAU_HINH = {
+  tieuDe: "Ghé chùa Thiên Mụ, nghe chuông bên dòng Hương",
+  moTa: "Thỉnh một hồi chuông, thắp nén hương, xin một quẻ xăm và thả hoa đăng gửi lời an yên, cùng những người đang ghé thăm.",
+
+  // Email Google của người quản trị (được xoá lời nguyện). Ví dụ: "ten.cua.anh@gmail.com"
+  emailQuanTri: "",
+
+  // Để trống: trang tự chơi đàn tranh – đàn bầu theo hơi Nam Ai.
+  // Muốn dùng bản thu của riêng mình: tải file (vd. nhac-hue.mp3) lên cạnh index.html
+  // rồi ghi tên file vào đây, ví dụ: nhacNen: "nhac-hue.mp3",
+  nhacNen: "",
+
+  // Dán cấu hình Firebase vào đây để mọi người thấy nhau (xem README).
+  // Để null thì trang chạy bản xem thử trên một máy.
+  firebase: null
+  /* Ví dụ:
+  firebase: {
+    apiKey: "AIza...",
+    authDomain: "ten-du-an.firebaseapp.com",
+    databaseURL: "https://ten-du-an-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "ten-du-an",
+    appId: "1:000000000000:web:0000000000000000"
+  }
+  */
+};
+
+/* =====================================================================
+   ÂM THANH — nhạc Huế tổng hợp (đàn tranh, đàn bầu, hơi Nam Ai),
+   tiếng sông, chuông Đại Hồng Chung, chuông gia trì, mõ, ống xăm, keo
+   ===================================================================== */
+const AM = (() => {
+  let ac = null, out, musicBus, sfxBus, enabled = true, playing = false, mode = null, el = null;
+  let timer = 0, nextT = 0, water = null, noiseBuf = null, bauWave = null, duckUntil = 0;
+  const MUSIC_VOL = .72;
+  const BASE = 293.66;                       // Hò = Rê 4
+  const SC = [0, 150, 500, 700, 850];        // Hò · Xự · Xang · Xê · Cống — hơi Ai: Xự và Cống "non"
+  const cents = i => (Math.floor(i / 5) - 1) * 1200 + SC[((i % 5) + 5) % 5];
+  const hz = c => BASE * Math.pow(2, c / 1200);
+  const R = (a, b) => a + Math.random() * (b - a);
+  const pick = a => a[Math.floor(Math.random() * a.length)];
+
+  try { enabled = localStorage.getItem("tcm_snd") !== "0"; } catch (e) {}
+
+  function ctx() {
+    if (ac) return ac;
+    const C = window.AudioContext || window.webkitAudioContext;
+    if (!C) return null;
+    ac = new C();
+    const comp = ac.createDynamicsCompressor(); comp.threshold.value = -16; comp.ratio.value = 3; comp.connect(ac.destination);
+    out = ac.createGain(); out.gain.value = .9; out.connect(comp);
+    const rev = ac.createConvolver(); rev.buffer = impulse(3.4);
+    const wet = ac.createGain(); wet.gain.value = .3; rev.connect(wet); wet.connect(out);
+    musicBus = ac.createGain(); musicBus.gain.value = 0; musicBus.connect(out);
+    const mSend = ac.createGain(); mSend.gain.value = .85; musicBus.connect(mSend); mSend.connect(rev);
+    sfxBus = ac.createGain(); sfxBus.gain.value = enabled ? 1 : 0; sfxBus.connect(out); sfxBus.connect(rev);
+    noiseBuf = ac.createBuffer(1, ac.sampleRate, ac.sampleRate);
+    const nd = noiseBuf.getChannelData(0); for (let i = 0; i < nd.length; i++) nd[i] = Math.random() * 2 - 1;
+    return ac;
+  }
+  function impulse(sec) {
+    const n = Math.floor(ac.sampleRate * sec), b = ac.createBuffer(2, n, ac.sampleRate);
+    for (let c = 0; c < 2; c++) { const d = b.getChannelData(c); for (let i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 3); }
+    return b;
+  }
+
+  /* ---------- Đàn tranh: dây gảy Karplus–Strong ---------- */
+  const strings = new Map();
+  function str(c) {
+    const key = Math.round(c / 5) * 5;
+    if (strings.has(key)) return strings.get(key);
+    const f = hz(key), sr = ac.sampleRate, N = Math.max(4, Math.round(sr / f - .5)), len = Math.floor(sr * 3.2);
+    const ring = new Float32Array(N);
+    for (let i = 0; i < N; i++) ring[i] = (Math.random() * 2 - 1) * .65 + Math.sin(Math.PI * i / N) * .35;
+    const dec = Math.pow(.001, 1 / (f * (f > 700 ? 1.5 : 2.4)));
+    const ab = ac.createBuffer(1, len, sr), d = ab.getChannelData(0);
+    let p = 0, prev = 0, y = 0;
+    for (let i = 0; i < len; i++) {
+      const q = p + 1 === N ? 0 : p + 1, a = ring[p];
+      ring[p] = (a + ring[q]) * .5 * dec;
+      y = a - prev + .995 * y; prev = a; d[i] = y * 1.25;
+      p = q;
+    }
+    const s = { buf: ab, rate: f / (sr / (N + .5)), res: 0 };
+    strings.set(key, s); return s;
+  }
+  // o: { rung: độ rung (cent), nhan: nhấn từ dưới lên (cent), luyen: luyến xuống cuối nốt }
+  function tranh(t, c, dur, vel = .5, o = {}) {
+    const s = str(c), src = ac.createBufferSource(), g = ac.createGain();
+    src.buffer = s.buf; src.playbackRate.value = s.rate;
+    const base = (c - Math.round(c / 5) * 5) + R(-3, 3);
+    src.detune.setValueAtTime(o.nhan ? base - o.nhan : base, t);
+    let cursor = t;
+    if (o.nhan) { src.detune.linearRampToValueAtTime(base, t + .15); cursor = t + .18; }
+    if (o.rung) {
+      const st = Math.max(cursor, t + .16), len = Math.max(.3, (o.luyen ? dur * .62 : dur - .08)), n = Math.max(8, Math.ceil(len * 60)), cv = new Float32Array(n);
+      for (let i = 0; i < n; i++) { const x = i / 60; cv[i] = base + Math.sin(x * Math.PI * 2 * 5.2) * o.rung * Math.min(1, x * 3); }
+      src.detune.setValueCurveAtTime(cv, st, len); cursor = st + len + .01;
+    }
+    if (o.luyen) { const st = Math.max(cursor, t + dur * .7); src.detune.setValueAtTime(base, st); src.detune.linearRampToValueAtTime(base - 120, st + Math.max(.15, dur * .25)); }
+    g.gain.setValueAtTime(vel, t);
+    g.gain.setTargetAtTime(0, t + dur + .25, .45);
+    if (ac.createStereoPanner) { const pn = ac.createStereoPanner(); pn.pan.value = Math.max(-.6, Math.min(.6, (c - 600) / 2400)); src.connect(g); g.connect(pn); pn.connect(musicBus); }
+    else { src.connect(g); g.connect(musicBus); }
+    src.start(t); src.stop(t + Math.min(3.15, dur + 2.6));
+  }
+  function vuot(t, a, b, step = .05, vel = .26) {           // vuốt dây (glissando)
+    const dir = b > a ? 1 : -1; let k = 0;
+    for (let i = a; i !== b + dir; i += dir) { tranh(t + k * step, cents(i), .45, vel * (1 - k * .05)); k++; }
+    return t + k * step;
+  }
+
+  /* ---------- Đàn bầu: một dây, vuốt cần đổi cao độ ---------- */
+  function bau(t, seq, vel = .12) {
+    if (!bauWave) bauWave = ac.createPeriodicWave(new Float32Array([0, 0, 0, 0, 0, 0]), new Float32Array([0, 1, .3, .13, .06, .03]));
+    const o = ac.createOscillator(), g = ac.createGain(), lfo = ac.createOscillator(), lg = ac.createGain(), lp = ac.createBiquadFilter();
+    o.setPeriodicWave(bauWave); lfo.frequency.value = 5.3; lg.gain.value = 0; lfo.connect(lg); lg.connect(o.detune);
+    lp.type = "lowpass"; lp.frequency.value = 2200;
+    let tt = t; o.frequency.setValueAtTime(hz(seq[0][0]), t); g.gain.setValueAtTime(0, t);
+    seq.forEach(([c, d], i) => {
+      if (i) o.frequency.setTargetAtTime(hz(c), tt - .05, .07);
+      g.gain.setTargetAtTime(vel, tt, .02); g.gain.setTargetAtTime(vel * .4, tt + .08, d * .45);
+      lg.gain.setValueAtTime(0, tt); lg.gain.linearRampToValueAtTime(26, tt + Math.min(d, 1.4) * .75);
+      tt += d;
+    });
+    g.gain.setTargetAtTime(0, tt - .15, .35);
+    o.connect(lp); lp.connect(g); g.connect(musicBus);
+    o.start(t); lfo.start(t); o.stop(tt + 2.2); lfo.stop(tt + 2.2);
+    return tt;
+  }
+
+  /* ---------- Câu nhạc: mở – thân – kết, ngẫu hứng theo khuôn ---------- */
+  // chỉ số nốt: 3 Xê thấp · 5 Hò · 6 Xự · 7 Xang · 8 Xê · 9 Cống · 10 Hò cao · 11 Xự cao · 12 Xang cao
+  const MO = [[[7, 1], [8, 1], [9, 2], [8, .5], [7, .5]], [[10, 1.5], [9, .5], [8, 1], [9, 1]], [[5, 1], [7, 1], [8, 2]], [[8, .5], [10, .5], [9, 1], [8, 2]], [[12, 1], [10, .5], [9, .5], [10, 2]]];
+  const THAN = [[[9, .5], [8, .5], [7, 1], [6, 1.5], [7, .5]], [[11, 1], [10, .5], [9, .5], [8, 2]], [[7, .5], [6, .5], [5, 1], [6, .5], [7, .5], [8, 2]], [[8, 1], [9, .5], [11, .5], [10, 2]], [[10, .5], [9, .5], [8, .5], [7, .5], [6, 2]]];
+  const KET = [[[8, .5], [7, .5], [6, 1], [5, 3]], [[6, 1], [7, .5], [6, .5], [5, 3]], [[9, 1], [8, 1], [8, 3]], [[7, .5], [6, .5], [5, 1], [3, 1], [5, 3]], [[10, 1], [9, .5], [8, .5], [7, 1], [6, .5], [5, 3]]];
+  function phrase(t) {
+    const B = R(.68, .8);
+    if (Math.random() < .22) t = vuot(t, 0, 7, .06, .2) + .15;
+    const notes = [...pick(MO), ...pick(THAN), ...(Math.random() < .45 ? pick(THAN) : []), ...pick(KET)];
+    let tt = t, prev = null;
+    tranh(t, cents(0), 2.2, .24);
+    notes.forEach(([i, d], k) => {
+      const c = cents(i), dur = d * B, last = k === notes.length - 1, deg = ((i % 5) + 5) % 5, o = {};
+      if ((deg === 1 || deg === 4) && d >= 1) o.rung = R(30, 46);
+      else if (d >= 1.5) o.rung = R(9, 18);
+      if (prev !== null && i > prev && d >= 1 && Math.random() < .4) { const iv = c - cents(prev); if (iv > 0 && iv <= 360) o.nhan = iv; }
+      if (last && Math.random() < .3) o.luyen = true;
+      if (last && Math.random() < .4) vuot(tt - 6 * .045, i + 6, i + 1, .045, .18);
+      tranh(tt, c, dur, (d >= 2 ? .56 : .46) * R(.86, 1.08), o);
+      if (last) tranh(tt, cents(i - 5), dur, .2);
+      prev = i; tt += dur;
+    });
+    const tail = notes.slice(-3).map(([i, d]) => [cents(i), Math.max(.5, d) * B * 1.3]);
+    const end = bau(tt + B * .5, tail);
+    return end + B * R(1.6, 3.2);
+  }
+  function loop() {
+    timer = 0;
+    if (!playing || !enabled || mode !== "synth") return;
+    while (nextT < ac.currentTime + 1.2) nextT = phrase(Math.max(nextT, ac.currentTime + .15));
+    timer = setTimeout(loop, 400);
+  }
+
+  /* ---------- Tiếng sông ---------- */
+  function startWater() {
+    if (water) return;
+    const sr = ac.sampleRate, n = sr * 6, m = Math.floor(sr * .5), b = ac.createBuffer(1, n, sr), d = b.getChannelData(0);
+    let last = 0; for (let i = 0; i < n; i++) { last = (last + .02 * (Math.random() * 2 - 1)) / 1.02; d[i] = last * 3.2; }
+    for (let i = 0; i < m; i++) { const k = i / m; d[i] = d[i] * k + d[n - m + i] * (1 - k); }
+    const src = ac.createBufferSource(); src.buffer = b; src.loop = true; src.loopStart = 0; src.loopEnd = (n - m) / sr;
+    const lp = ac.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 520;
+    const g = ac.createGain(); g.gain.value = 0;
+    const lfo = ac.createOscillator(), lg = ac.createGain(); lfo.frequency.value = .08; lg.gain.value = .016; lfo.connect(lg); lg.connect(g.gain);
+    src.connect(lp); lp.connect(g); g.connect(out); src.start(); lfo.start(); water = g;
+  }
+
+  /* ---------- Bật / tắt ---------- */
+  function apply() {
+    if (!ac) return;
+    const t = ac.currentTime, want = enabled && playing;
+    sfxBus.gain.setTargetAtTime(enabled ? 1 : 0, t, .05);
+    if (water) water.gain.setTargetAtTime(want ? .045 : 0, t, .5);
+    if (mode === "file" && el) { el.muted = !want; if (want) el.play().catch(() => {}); musicBus.gain.setTargetAtTime(0, t, .2); }
+    else if (mode === "synth") {
+      musicBus.gain.setTargetAtTime(want ? MUSIC_VOL : 0, t, .4);
+      if (want && !timer) { nextT = Math.max(nextT, t + .4); loop(); }
+    }
+  }
+  function duck(sec) {
+    if (!ac) return; const t = ac.currentTime; duckUntil = Math.max(duckUntil, t + sec);
+    if (mode === "synth" && enabled && playing) { musicBus.gain.setTargetAtTime(.14, t, .15); musicBus.gain.setTargetAtTime(MUSIC_VOL, duckUntil, 1.2); }
+    if (mode === "file" && el) { el.volume = .18; clearTimeout(duck.h); duck.h = setTimeout(() => { el.volume = .55; }, sec * 1000); }
+  }
+
+  /* ---------- Hiệu ứng ---------- */
+  function part(t, f, a, d, type = "sine") {
+    const o = ac.createOscillator(), g = ac.createGain(); o.type = type; o.frequency.value = f;
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(a, t + .006); g.gain.exponentialRampToValueAtTime(.0001, t + d);
+    o.connect(g); g.connect(sfxBus); o.start(t); o.stop(t + d + .05); return o;
+  }
+  function burst(t, f, a, len, q = 3, type = "bandpass") {
+    const s = ac.createBufferSource(), bp = ac.createBiquadFilter(), g = ac.createGain();
+    s.buffer = noiseBuf; bp.type = type; bp.frequency.value = f; bp.Q.value = q;
+    g.gain.setValueAtTime(a, t); g.gain.exponentialRampToValueAtTime(.0001, t + len);
+    s.connect(bp); bp.connect(g); g.connect(sfxBus); s.start(t, Math.random() * .8, len + .02);
+  }
+  function sfx(k) {
+    if (!enabled) return;
+    const c = ctx(); if (!c) return; if (c.state === "suspended") c.resume();
+    const t = c.currentTime + .03;
+    if (k === "lon") {                                  // Đại Hồng Chung
+      const f = 96, P = [[.5, .32, 15], [1, 1, 18], [1.62, .34, 13], [2.07, .58, 12], [2.76, .44, 9], [3.44, .3, 7], [4.18, .21, 5.5], [5.43, .13, 4], [6.9, .07, 3]];
+      for (const [r, a, d] of P) { part(t, f * r, a * .24, d); part(t, f * r + .55 + r * .22, a * .2, d * .94); }
+      const th = part(t, 62, .45, .55); th.frequency.setValueAtTime(70, t); th.frequency.exponentialRampToValueAtTime(48, t + .5);
+      burst(t, 520, .5, .09, 1.2, "lowpass"); duck(7);
+    } else if (k === "giatri") {                        // chuông gia trì
+      const f = 560, P = [[1, 1, 8.5], [2.74, .4, 6], [5.15, .17, 3.4], [8.3, .06, 1.8]];
+      for (const [r, a, d] of P) { part(t, f * r, a * .2, d); part(t, f * r + 1.8 + r * .5, a * .17, d * .92); }
+      burst(t, 3200, .16, .03, 2); duck(4);
+    } else if (k === "mo") {                            // mõ gỗ
+      burst(t, 640, 3.4, .14, 14); burst(t, 1250, 1.4, .08, 9);
+      const o = part(t, 740, .45, .15, "triangle"); o.frequency.setValueAtTime(760, t); o.frequency.exponentialRampToValueAtTime(540, t + .1);
+    } else if (k === "xoc") {                           // lắc ống xăm
+      for (let i = 0; i < 22; i++) { const tt = t + i * .068 + R(-.012, .012); burst(tt, R(1900, 3900), R(.5, 1.1), R(.008, .016), 4); if (i % 3 === 0) burst(tt, R(700, 1000), .5, .02, 5); }
+    } else if (k === "the") {                           // thẻ rơi
+      burst(t, 1500, 1.6, .03, 6); burst(t + .13, 1700, .8, .02, 6); burst(t + .22, 1800, .4, .015, 6);
+      part(t, 420, .3, .08, "triangle");
+    } else if (k === "keo") {                           // đôi keo chạm nền
+      for (const [dt, a] of [[0, 1.6], [.05, 1.4], [.17, .7], [.24, .55], [.31, .25]]) { burst(t + dt, R(850, 1150), a, .035, 7); part(t + dt, R(380, 460), a * .25, .06, "triangle"); }
+    } else if (k === "hoadang") {                       // thả xuống nước
+      const o = part(t, 420, .22, .28); o.frequency.setValueAtTime(440, t); o.frequency.exponentialRampToValueAtTime(150, t + .16);
+      burst(t, 700, .25, .3, .8, "lowpass");
+    } else if (k === "huong") {
+      part(t, 1320, .05, 1.6); part(t, 1980, .03, 1.1);
+    }
+  }
+
+  return {
+    get on() { return enabled; },
+    unlock() { const c = ctx(); if (c && c.state === "suspended") c.resume(); },
+    start() {                                           // gọi trong thao tác chạm của người dùng
+      const c = ctx(); if (!c) return;
+      if (c.state === "suspended") c.resume();
+      playing = true; startWater();
+      if (mode === null) {
+        mode = "synth";
+        if (CAU_HINH.nhacNen) {
+          el = new Audio(encodeURI(CAU_HINH.nhacNen)); el.loop = true; el.volume = .55; el.muted = !enabled;
+          el.play().then(() => { mode = "file"; apply(); }).catch(() => { el = null; mode = "synth"; apply(); });
+          return;
+        }
+      }
+      apply();
+    },
+    setOn(v) { enabled = v; try { localStorage.setItem("tcm_snd", v ? "1" : "0"); } catch (e) {} if (v) { const c = ctx(); if (c && c.state === "suspended") c.resume(); } apply(); },
+    sfx, duck
+  };
+})();
+
+/* =====================================================================
+   XIN XĂM — 30 quẻ lục bát sáng tác theo tinh thần ca dao xứ Huế
+   ===================================================================== */
+const VIEC = [["cv", "Công việc"], ["tl", "Tài lộc"], ["gd", "Gia đạo"], ["sk", "Sức khỏe"], ["td", "Tình duyên"]];
+const HANG = { dai: ["Đại Cát", "r-dai"], thuong: ["Thượng Cát", "r-thuong"], trung: ["Trung Bình", "r-trung"], ha: ["Hạ", "r-ha"] };
+const QUE = [
+ { h: "dai", ten: "Chuông sớm Thiên Mụ", tho: ["Chuông ngân Thiên Mụ sớm mai", "Sương tan mặt nước, nắng cài ngọn thông", "Đò về gió thuận xuôi dòng", "Việc lành đã đến, ước mong vẹn tròn"],
+   ban: "Quẻ rất tốt. Như tiếng chuông ban mai xua tan sương sớm, mọi việc khởi đầu thuận lợi, có quý nhân giúp đỡ.",
+   cv: "Công việc hanh thông, đề xuất dễ được chấp thuận; nên chủ động nhận việc mới.", tl: "Tài lộc đến đều, có khoản thu ngoài dự tính; vẫn nên chi tiêu chừng mực.", gd: "Gia đạo êm ấm, con cháu hiếu thuận, trong nhà có tin vui.", sk: "Tinh thần sảng khoái, sức khỏe ổn định; giữ nếp dậy sớm, vận động nhẹ.", td: "Duyên lành gần kề, người thật lòng đang ở rất gần." },
+ { h: "trung", ten: "Mưa dầm phố cổ", tho: ["Mưa dầm phố cổ rêu xanh", "Đợi trời hửng nắng an lành hãy đi", "Việc gì chớ vội làm chi", "Chậm mà chắc bước, nhiều khi lại thành"],
+   ban: "Quẻ trung bình. Thời điểm chưa chín, nên kiên nhẫn chờ, chuẩn bị kỹ rồi hãy hành động.",
+   cv: "Công việc còn chậm, chưa nên thay đổi lớn; tập trung hoàn thiện việc đang làm.", tl: "Tài chính ở mức đủ dùng; tránh đầu tư vội vàng theo lời đồn.", gd: "Trong nhà bình thường; nên dành thời gian trò chuyện với người thân.", sk: "Giữ ấm khi trời trở lạnh, ăn ngủ điều độ.", td: "Tình cảm cần thời gian vun đắp, đừng nóng vội đòi câu trả lời." },
+ { h: "thuong", ten: "Trăng soi Vỹ Dạ", tho: ["Đêm trăng Vỹ Dạ hiền hòa", "Hàng cau soi bóng, lời ca dịu dàng", "Người xưa đã hẹn đò sang", "Chuyện xưa gác lại, rộn ràng tin vui"],
+   ban: "Quẻ tốt. Như trăng sáng trên bến Vỹ Dạ, người cũ, việc cũ quay lại mang theo điều may.",
+   cv: "Có cơ hội hợp tác với người quen cũ; lời hứa trước đây sắp thành hiện thực.", tl: "Khoản tiền chờ lâu sắp về; buôn bán qua mối quen thuận lợi.", gd: "Người đi xa sắp về sum họp, nhà thêm tiếng cười.", sk: "Sức khỏe tốt dần; nên thư giãn, đi dạo buổi tối.", td: "Người xưa có thể trở lại, hoặc gặp người hợp ý qua bạn bè." },
+ { h: "ha", ten: "Đò đi ngược gió", tho: ["Đò đi ngược gió sông dài", "Mái chèo nặng trĩu, ai hay nỗi lòng", "Khoan khoan neo lại bến trong", "Chờ con nước lớn xuôi dòng sẽ qua"],
+   ban: "Quẻ hạ. Thời vận đang ngược, cố sức dễ mệt mà chưa thành. Nên tạm dừng, giữ sức và chờ thời.",
+   cv: "Dễ gặp trở ngại, dễ hiểu lầm với cấp trên; giữ bình tĩnh, ghi chép rõ ràng, chưa nên đổi việc.", tl: "Hạn chế cho vay, đứng tên bảo lãnh hay đầu tư rủi ro trong thời gian này.", gd: "Dễ có bất đồng nhỏ; nhường nhịn một bước, chuyện sẽ êm.", sk: "Cơ thể dễ mệt; nên nghỉ ngơi, thấy khác thường thì đi khám sớm.", td: "Tình cảm có sóng gió; lắng nghe nhau hơn là tranh hơn thua." },
+ { h: "thuong", ten: "Sen nở Tịnh Tâm", tho: ["Hồ Tịnh Tâm nở sen hồng", "Gần bùn chẳng nhuốm, thơm nồng khắp nơi", "Giữ lòng trong sạch người ơi", "Phúc lành tự đến, đẹp đời trước sau"],
+   ban: "Quẻ tốt. Như sen giữa bùn vẫn thơm, giữ ngay thẳng thì gặp may, được người tin cậy.",
+   cv: "Được đánh giá cao nhờ sự liêm chính; có thể được giao trọng trách.", tl: "Tiền bạc đến từ việc chính đáng nên bền; tránh lợi nhỏ khuất tất.", gd: "Nhà cửa yên vui, nề nếp được giữ gìn.", sk: "Tâm an thì thân khỏe; ngồi thiền hay hít thở sâu mỗi ngày rất tốt.", td: "Gặp người tử tế, chân thành; hợp để tiến tới lâu dài." },
+ { h: "trung", ten: "Qua cầu Trường Tiền", tho: ["Trường Tiền mười hai nhịp cầu", "Bước qua từng nhịp, trước sau vững vàng", "Đi từng bước một nhẹ nhàng", "Nhịp nào cũng tới, sang ngang yên lòng"],
+   ban: "Quẻ trung bình. Việc lớn cần chia nhỏ, làm tuần tự từng bước thì xong; nóng vội dễ hỏng.",
+   cv: "Dự án dài hơi; lập kế hoạch theo từng giai đoạn và báo cáo đều đặn.", tl: "Thu nhập ổn định nhưng tăng chậm; tích lũy đều sẽ thấy kết quả.", gd: "Việc nhà cần sắp xếp lại; phân công rõ ràng sẽ bớt mệt.", sk: "Duy trì đi bộ, tập luyện đều; tránh thức khuya liên tục.", td: "Tình cảm tiến triển chậm mà chắc; cứ để mọi chuyện tự nhiên." },
+ { h: "trung", ten: "Sương mờ núi Ngự", tho: ["Núi Ngự sương phủ mờ mờ", "Đường lên còn khuất, đôi bờ chưa phân", "Đợi trưa nắng rọi dần dần", "Lối mòn hiện rõ, xa gần đều thông"],
+   ban: "Quẻ trung bình. Còn nhiều điều chưa rõ; nên tìm hiểu thêm, hỏi người có kinh nghiệm trước khi quyết.",
+   cv: "Thông tin chưa đầy đủ; kiểm tra kỹ trước khi ký kết hay cam kết.", tl: "Chưa nên xuống tiền lớn; đợi số liệu rõ ràng hơn.", gd: "Có chuyện chưa nói ra được; chọn lúc thích hợp để bàn bạc.", sk: "Hay mỏi mắt, nhức đầu thì nghỉ ngơi và bớt dùng màn hình.", td: "Lòng người kia còn mờ; quan sát thêm, đừng vội tin hay vội buông." },
+ { h: "dai", ten: "Ngọ Môn cờ mở", tho: ["Ngọ Môn cờ mở tung bay", "Lầu son rực rỡ, gặp ngày hiển vinh", "Bao năm gắng sức tận tình", "Nay công thành đạt, danh mình vang xa"],
+   ban: "Quẻ rất tốt. Công sức bấy lâu được ghi nhận, danh tiếng lên cao. Nhớ giữ khiêm tốn.",
+   cv: "Có tin thăng tiến, khen thưởng hoặc trúng thầu; lúc nên mạnh dạn.", tl: "Thu nhập tăng rõ; nên trích một phần làm việc thiện.", gd: "Nhà có việc vui, được họ hàng nể trọng.", sk: "Sức khỏe dồi dào; đừng vì bận rộn mà bỏ bữa.", td: "Được nhiều người để ý; chọn người hiểu mình hơn là người chỉ khen mình." },
+ { h: "ha", ten: "Lá rụng sân chùa", tho: ["Sân chùa lá rụng đầy thềm", "Gió lay cành trúc, đêm đêm lạnh lùng", "Chú tiểu quét lá ung dung", "Lá đi lá đến, vô cùng đổi thay"],
+   ban: "Quẻ hạ. Có mất mát hoặc chia xa, nhưng đó là lẽ thường. Buông điều đã qua để lòng nhẹ hơn.",
+   cv: "Có thể lỡ một cơ hội hoặc có người cộng sự rời đi; chuẩn bị phương án dự phòng.", tl: "Có khoản hao hụt; rà soát chi tiêu, tránh mua sắm theo cảm xúc.", gd: "Người thân có thể đi xa hoặc có chuyện buồn; quan tâm, thăm hỏi nhiều hơn.", sk: "Giữ ấm, ngủ đủ; để ý người lớn tuổi trong nhà.", td: "Một mối quan hệ có thể khép lại; chấp nhận nhẹ nhàng, duyên mới sẽ đến sau." },
+ { h: "thuong", ten: "Vườn ngọt Kim Long", tho: ["Kim Long vườn ngọt trái thơm", "Chăm cây năm trước, nay đơm quả lành", "Cây cao bóng mát xanh xanh", "Người trồng người hái, ngọt thanh tháng ngày"],
+   ban: "Quẻ tốt. Gieo nhân lành thì gặt quả ngọt; những gì đã chăm chút nay bắt đầu sinh lời.",
+   cv: "Kết quả từ nỗ lực trước đây bắt đầu thấy rõ; được tin giao việc lớn hơn.", tl: "Khoản đầu tư dài hạn có lãi; tài sản tăng đều.", gd: "Con cái học hành tiến bộ, cha mẹ vui lòng.", sk: "Ăn nhiều rau quả, sức khỏe khá lên rõ.", td: "Tình cảm đơm hoa kết trái; hợp để ra mắt gia đình." },
+ { h: "trung", ten: "Gió Lào tháng Sáu", tho: ["Tháng Sáu gió Lào hanh hao", "Nắng nung mái ngói, ai nào có hay", "Uống ly chè mát qua ngày", "Thu sang gió dịu, mưa bay mát lòng"],
+   ban: "Quẻ trung bình. Giai đoạn vất vả, áp lực, nhưng chỉ nhất thời. Giữ sức, giữ bình tĩnh rồi sẽ dễ chịu hơn.",
+   cv: "Áp lực công việc cao; làm việc quan trọng trước, nhờ đồng nghiệp hỗ trợ khi cần.", tl: "Chi phí phát sinh nhiều; lập ngân sách, cắt khoản không cần thiết.", gd: "Dễ nóng nảy vì mệt; nói nhẹ nhàng với người thân.", sk: "Uống đủ nước, tránh nắng gắt, nghỉ trưa ngắn.", td: "Có chút căng thẳng; một buổi đi chơi nhẹ nhàng sẽ hàn gắn." },
+ { h: "thuong", ten: "Đò đưa bến Vân Lâu", tho: ["Vân Lâu bến cũ đò đưa", "Người đi buôn bán, sớm trưa thuận chiều", "Mái chèo nhẹ lướt mỹ miều", "Đi xa lắm bạn, được nhiều niềm vui"],
+   ban: "Quẻ tốt cho đi lại, giao thương, mở rộng quan hệ. Ra ngoài nhiều sẽ gặp vận may.",
+   cv: "Thuận lợi cho công tác xa, gặp đối tác mới, mở rộng thị trường.", tl: "Buôn bán, giao dịch có lời; tiền đến từ quan hệ mới.", gd: "Nên đưa cả nhà đi chơi xa một chuyến.", sk: "Đi lại nhiều nhưng sức khỏe tốt; nhớ giữ giấc ngủ khi di chuyển.", td: "Dễ gặp người hợp ý trong chuyến đi hoặc buổi gặp đông người." },
+ { h: "trung", ten: "Nón bài thơ", tho: ["Nón bài thơ nghiêng vành che", "Câu thơ ẩn giữa, ai nghe ai tường", "Soi lên mới thấy rõ đường", "Việc chưa sáng tỏ, phải nương ánh trời"],
+   ban: "Quẻ trung bình. Điều quan trọng đang ẩn giấu, cần nhìn từ góc khác hoặc nhờ người sáng suốt soi giúp.",
+   cv: "Đọc kỹ điều khoản, hỏi người có chuyên môn trước khi quyết.", tl: "Có cơ hội nhưng ẩn rủi ro; đừng ham lời cao bất thường.", gd: "Có người trong nhà giữ tâm sự; quan tâm tinh tế sẽ hiểu.", sk: "Khám sức khỏe định kỳ để biết rõ, đừng tự đoán.", td: "Người kia có tình cảm nhưng chưa nói; cho họ thêm thời gian." },
+ { h: "ha", ten: "Lụt tháng Mười", tho: ["Tháng Mười nước lũ dâng cao", "Đò không rời bến, ai nào dám đi", "Lũ qua rồi sẽ có khi", "Phù sa bồi đắp xanh rì ruộng nương"],
+   ban: "Quẻ hạ. Đang có biến động lớn, không nên mạo hiểm. Nhưng như lũ qua để lại phù sa, sau khó khăn sẽ có thành quả.",
+   cv: "Chưa nên khởi sự hay nhảy việc; giữ vị trí, củng cố chuyên môn.", tl: "Thận trọng tối đa; giữ tiền mặt, tránh vay mượn thêm.", gd: "Cả nhà cần đồng lòng vượt qua một việc khó.", sk: "Phòng bệnh theo mùa, giữ vệ sinh ăn uống; đừng chủ quan.", td: "Có thử thách; vượt qua được thì tình cảm bền chặt hơn." },
+ { h: "dai", ten: "Hoa đăng sông Hương", tho: ["Hoa đăng thả xuống sông Hương", "Muôn ngọn lửa ấm soi đường đêm thâu", "Lời nguyện gửi trọn trước sau", "Trời cao chứng giám, nhiệm màu hiển linh"],
+   ban: "Quẻ rất tốt. Tâm nguyện chân thành sẽ được đáp lại; điều mong cầu có cơ thành tựu.",
+   cv: "Mục tiêu đặt ra sắp đạt; được cấp trên và đồng nghiệp ủng hộ.", tl: "Tài lộc hanh thông; có thể đón một khoản thu lớn.", gd: "Gia đình hòa thuận, điều cả nhà mong ước sắp thành.", sk: "Tinh thần an lạc, sức khỏe vững vàng; giữ nếp sống lành mạnh.", td: "Tình duyên viên mãn; người độc thân dễ gặp ý trung nhân." },
+ { h: "trung", ten: "Chiều tím kinh thành", tho: ["Chiều về tím ngát kinh thành", "Lòng người còn lắm ngọn ngành chưa phân", "Ngồi yên nghĩ lại đôi lần", "Biết mình biết việc, tinh thần nhẹ tênh"],
+   ban: "Quẻ trung bình. Lòng đang phân vân giữa nhiều lựa chọn; dành thời gian suy xét, viết ra được – mất của từng hướng.",
+   cv: "Đứng trước lựa chọn; cân nhắc đường dài hơn cái lợi trước mắt.", tl: "Thu chi cân bằng; chưa phải lúc mở rộng.", gd: "Nên lắng nghe ý kiến người lớn tuổi trong nhà.", sk: "Suy nghĩ nhiều dễ mất ngủ; tập thả lỏng trước khi ngủ.", td: "Lòng còn lưỡng lự; hãy thành thật với chính mình." },
+ { h: "ha", ten: "Lỡ chuyến đò chiều", tho: ["Bến chiều lỡ chuyến đò ngang", "Đứng trông bên ấy, mênh mang sóng tràn", "Đừng buồn chớ vội than van", "Mai còn chuyến sớm, thênh thang lối về"],
+   ban: "Quẻ hạ. Có thể lỡ một dịp may hoặc chậm trễ; đừng tự trách, cơ hội khác sẽ đến nếu chuẩn bị sẵn.",
+   cv: "Dễ trễ hạn, lỡ hẹn; kiểm tra lịch và đặt nhắc việc cẩn thận.", tl: "Có thể bỏ lỡ một thương vụ; chớ đuổi theo bằng mọi giá.", gd: "Hẹn với gia đình dễ lỡ; giữ lời hứa với người thân.", sk: "Đừng bỏ lịch khám hay giờ ăn giấc ngủ vì bận.", td: "Có thể lỡ một người; người hợp sẽ đến đúng lúc." },
+ { h: "thuong", ten: "Chợ sớm Đông Ba", tho: ["Đông Ba chợ sớm đông vui", "Bán buôn tấp nập, ngược xuôi thuận hòa", "Tiếng chào mời gọi ngân nga", "Khéo ăn khéo nói, lãi qua tay đầy"],
+   ban: "Quẻ tốt cho buôn bán, giao tiếp. Khéo ăn nói, giữ chữ tín thì làm ăn phát đạt.",
+   cv: "Thuận lợi cho bán hàng, đàm phán, thuyết trình; tận dụng khả năng giao tiếp.", tl: "Doanh thu tăng; khách quen giới thiệu khách mới.", gd: "Nhà đông vui, khách khứa ra vào; nhớ dành thời gian riêng cho nhau.", sk: "Sức khỏe khá; giữ giọng, giữ cổ họng khi phải nói nhiều.", td: "Dễ gặp người vui tính, hợp chuyện ở nơi đông người." },
+ { h: "trung", ten: "Câu hò mái nhì", tho: ["Câu hò mái nhì vọng xa", "Ai người tri kỷ, cùng ta họa vần", "Bạn hiền đâu đó rất gần", "Mở lòng ra đón, ân cần đợi nhau"],
+   ban: "Quẻ trung bình. Việc một mình làm khó thành; nên tìm người đồng hành, chia sẻ công việc và niềm vui.",
+   cv: "Nên làm việc nhóm, tìm cộng sự; tránh ôm đồm một mình.", tl: "Hùn hạp nhỏ có thể có lời, nhưng giấy tờ phải rõ ràng.", gd: "Gọi hỏi thăm bạn bè, người thân lâu ngày chưa gặp.", sk: "Vận động cùng bạn bè (đi bộ, đạp xe) sẽ đều đặn hơn.", td: "Người hợp với bạn có thể là một người bạn lâu năm." },
+ { h: "thuong", ten: "Phượng đỏ Quốc Học", tho: ["Quốc Học phượng đỏ sân trường", "Học hành chăm chỉ, con đường thênh thang", "Bảng vàng ghi tiếng rỡ ràng", "Công danh thành tựu, vẻ vang cửa nhà"],
+   ban: "Quẻ tốt cho học hành, thi cử, nâng cao chuyên môn. Đầu tư cho tri thức sẽ sớm có kết quả.",
+   cv: "Hợp để học thêm chứng chỉ, nhận việc đòi hỏi chuyên môn; dễ đạt kết quả khi thi tuyển, thi nâng ngạch.", tl: "Thu nhập tăng nhờ năng lực; tiền cho việc học là đáng.", gd: "Con cái học tốt, có tin vui về thi cử.", sk: "Học, làm khuya nhiều; nhớ nghỉ mắt, ngủ đủ giấc.", td: "Dễ gặp người cùng chí hướng qua lớp học, hội thảo." },
+ { h: "trung", ten: "Sông sâu nước lặng", tho: ["Sông sâu nước lặng êm trôi", "Ai hay đáy nước dòng đời đổi thay", "Lặng thầm bền bỉ tháng ngày", "Nước mòn đá cứng, rồi đây thành công"],
+   ban: "Quẻ trung bình. Kết quả chưa thấy ngay nhưng đang tích lũy âm thầm. Bền bỉ, ít phô trương sẽ thành.",
+   cv: "Làm tốt phần việc của mình, ít nói nhiều làm; thành quả sẽ được ghi nhận sau.", tl: "Tích lũy đều, tránh khoe khoang tài sản.", gd: "Gia đạo bình yên, ít sóng gió.", sk: "Giữ thói quen tốt mỗi ngày, hiệu quả sẽ đến dần.", td: "Tình cảm âm thầm mà sâu; đừng so sánh với người khác." },
+ { h: "ha", ten: "Mây che trăng rằm", tho: ["Mây đen che khuất trăng rằm", "Đêm dài lối nhỏ, âm thầm bước đi", "Giữ tâm chớ để sân si", "Mây tan trăng lại sáng thì như xưa"],
+   ban: "Quẻ hạ. Có lời đồn không hay hoặc kẻ tiểu nhân che lấp công sức. Giữ bình tĩnh, làm đúng thì sự thật sẽ sáng tỏ.",
+   cv: "Đề phòng thị phi nơi làm việc; lưu giữ email, văn bản đầy đủ.", tl: "Cẩn trọng với lời mời gọi đầu tư, vay mượn; dễ bị lừa.", gd: "Đừng để lời người ngoài làm mất hòa khí trong nhà.", sk: "Tinh thần căng thẳng; tìm người tin cậy để chia sẻ.", td: "Có hiểu lầm hoặc người thứ ba xen vào; nói chuyện thẳng thắn." },
+ { h: "dai", ten: "Bảy tầng Phước Duyên", tho: ["Bảy tầng tháp cổ Phước Duyên", "Bước lên từng bậc, cửa thiền mở ra", "Trên cao nhìn rộng bao la", "Phúc duyên đầy đủ, cửa nhà an vui"],
+   ban: "Quẻ rất tốt. Như bước lên tháp cao, càng đi càng thấy rộng mở; phúc và duyên đều đủ.",
+   cv: "Thăng tiến vững chắc; tầm nhìn rộng giúp quyết định đúng.", tl: "Tài sản tăng bền vững; thuận lợi cho việc mua nhà, đất.", gd: "Nhà cửa an vui; hợp để xây sửa hay dọn về nhà mới.", sk: "Sức khỏe tốt; leo núi, đi bộ đường dài rất hợp.", td: "Duyên đẹp, hợp tính hợp ý; có thể tính chuyện lâu dài." },
+ { h: "trung", ten: "Ấm trà sen", tho: ["Ấm trà sen ủ đêm qua", "Sáng ra pha đượm, hương hoa mới nồng", "Chớ nên nóng vội trong lòng", "Thời gian ủ kỹ, thành công mới bền"],
+   ban: "Quẻ trung bình. Việc đang ủ, cần thêm thời gian mới đến độ chín. Đừng mở ra quá sớm.",
+   cv: "Chưa nên công bố kế hoạch; hoàn thiện thêm rồi hãy trình bày.", tl: "Tiền đang nằm trong khoản đầu tư; kiên nhẫn chờ, chưa rút vội.", gd: "Chuyện lớn trong nhà nên bàn kỹ, chưa vội quyết.", sk: "Giữ chế độ nghỉ ngơi; buổi chiều uống trà thay cà phê.", td: "Tình cảm đang lớn dần; để thời gian giúp người kia hiểu bạn." },
+ { h: "ha", ten: "Cành trúc la đà", tho: ["Gió đưa cành trúc la đà", "Cành mềm uốn lượn, cành già gãy ngang", "Biết nhường một bước nhẹ nhàng", "Qua cơn gió dữ, cành vàng lại xanh"],
+   ban: "Quẻ hạ. Đang có xung đột; cứng nhắc dễ gãy. Mềm mỏng, lùi một bước sẽ giữ được điều quan trọng.",
+   cv: "Dễ va chạm với đồng nghiệp hoặc đối tác; tránh tranh cãi gay gắt, tìm điểm chung.", tl: "Tranh chấp tiền bạc nên hòa giải, tránh kiện tụng tốn kém.", gd: "Nhường nhịn nhau, nhất là giữa các thế hệ trong nhà.", sk: "Cẩn thận đau lưng, chấn thương khi vận động mạnh; khởi động kỹ.", td: "Cái tôi lớn dễ làm tổn thương nhau; hãy mềm mỏng." },
+ { h: "thuong", ten: "Cầu ngói Thanh Toàn", tho: ["Thanh Toàn cầu ngói bắc ngang", "Nối đôi bờ ruộng, lúa vàng đầy sân", "Có người giúp đỡ ân cần", "Việc khó hóa dễ, muôn phần hanh thông"],
+   ban: "Quẻ tốt. Có quý nhân bắc cầu, kết nối; việc tưởng khó lại được giúp để thành.",
+   cv: "Được người giới thiệu cơ hội tốt; nhận lời giúp và nhớ đáp nghĩa.", tl: "Có người hỗ trợ vốn hoặc mối làm ăn.", gd: "Họ hàng giúp đỡ nhau, tình thân gắn bó.", sk: "Được người hiểu biết chỉ cách chăm sóc sức khỏe phù hợp.", td: "Có người mai mối, giới thiệu; nên mở lòng gặp gỡ." },
+ { h: "trung", ten: "Tơ đồng Nam Ai", tho: ["Nam Ai réo rắt tơ đồng", "Cung buồn cung vui, nỗi lòng ai hay", "Vui buồn như nước sông này", "Lúc trong lúc đục, đổi thay lẽ thường"],
+   ban: "Quẻ trung bình. Vận lên xuống xen kẽ; đón cả vui lẫn buồn bằng tâm bình thản.",
+   cv: "Có việc thuận, việc nghịch; giữ phong độ ổn định, đừng để cảm xúc chi phối.", tl: "Thu nhập lúc nhiều lúc ít; chuẩn bị quỹ dự phòng.", gd: "Cảm xúc thất thường dễ ảnh hưởng người thân; cùng nhau nghe nhạc, thư giãn.", sk: "Để ý giấc ngủ và tâm trạng; dành thời gian cho sở thích.", td: "Tình cảm có lúc nồng lúc nhạt; đó là thường tình, cần kiên nhẫn." },
+ { h: "trung", ten: "Thông reo Thiên An", tho: ["Đồi Thiên An gió thông reo", "Đường quanh co dốc, lưng đèo còn xa", "Chậm chân mà vững mới là", "Lên tới đỉnh dốc, gió hòa trời trong"],
+   ban: "Quẻ trung bình. Con đường trước mặt còn dài và có dốc; giữ nhịp đều, đừng bỏ cuộc giữa chừng.",
+   cv: "Mục tiêu còn xa; chia thành chặng nhỏ và ghi nhận từng bước tiến.", tl: "Đang giai đoạn bỏ công sức; lợi nhuận đến muộn.", gd: "Cha mẹ già cần được chăm sóc nhiều hơn.", sk: "Tăng sức bền dần dần; đừng tập quá sức.", td: "Theo đuổi cần bền lòng; chân thành sẽ được đáp lại." },
+ { h: "thuong", ten: "Buồm no Thuận An", tho: ["Thuận An biển rộng trời xanh", "Cánh buồm no gió, thuyền nhanh ra khơi", "Mở lòng đón lấy cơ trời", "Việc mới khởi sự, rạng ngời tương lai"],
+   ban: "Quẻ tốt cho khởi đầu mới: mở công ty, nhận việc mới, chuyển nhà, khai trương.",
+   cv: "Thời điểm tốt để khởi động dự án, khai trương hoặc nhận vị trí mới.", tl: "Vốn bỏ ra sớm thu hồi; thuận lợi mở rộng kinh doanh.", gd: "Hợp để dọn nhà, sửa sang không gian sống.", sk: "Lúc này dễ bỏ thói quen xấu, tập thói quen tốt.", td: "Mối quan hệ mới khởi đầu thuận lợi." },
+ { h: "trung", ten: "Hồi chuông chiều", tho: ["Chuông chiều vọng khắp kinh kỳ", "Nhắc người dừng bước, nghĩ suy đôi điều", "Bận lo được mất bao nhiêu", "Giữ tâm thanh tịnh, sớm chiều bình an"],
+   ban: "Quẻ trung bình. Lời nhắc nên chậm lại, nhìn lại mình; bớt lo toan, giữ sức khỏe và sự bình an.",
+   cv: "Công việc ổn; đừng ôm quá nhiều, biết từ chối việc không cần thiết.", tl: "Đủ ăn đủ dùng; biết đủ là giàu.", gd: "Dành nhiều thời gian hơn cho gia đình, cho bữa cơm chung.", sk: "Cơ thể cần nghỉ; ngủ sớm, bớt cà phê, mệt kéo dài thì đi khám.", td: "Tình cảm bình lặng; trân trọng những điều giản dị." }
+];
+
+const XAM = (() => {
+  let st = { buoc: "chon", viec: null, so: 0, lan: 0, cu: false };
+  let busy = false, motionOn = false, lastShake = 0;
+  const homNay = () => new Date(NET.now() + 7 * 3600e3).toISOString().slice(0, 10);
+  const tenViec = k => (VIEC.find(v => v[0] === k) || [k, "Việc chung"])[1];
+  function luu() { try { localStorage.setItem("tcm_xam", JSON.stringify({ so: st.so, viec: st.viec, ngay: homNay() })); } catch (e) {} }
+  function doc() { try { const v = JSON.parse(localStorage.getItem("tcm_xam") || "null"); return v && v.ngay === homNay() && QUE[v.so - 1] ? v : null; } catch (e) { return null; } }
+  const body = () => document.getElementById("xamBody");
+
+  function ongSVG() {
+    let s = `<svg viewBox="-70 -160 140 180" aria-hidden="true"><ellipse cx="0" cy="16" rx="40" ry="6" fill="#000" opacity=".16"/><g id="ong">`;
+    for (let i = 0; i < 15; i++) { const x = -15 + i * 2.2, r = (i - 7) * 1.6, top = -128 + (i % 3) * 6; s += `<g transform="rotate(${r} ${x} -40)"><rect x="${x - 1}" y="${top}" width="2.4" height="90" rx="1" fill="#d9b072"/><rect x="${x - 1}" y="${top}" width="2.4" height="10" rx="1" fill="#a8321f"/></g>`; }
+    s += `<g id="theRoi"><rect x="-1.5" y="-128" width="3.2" height="92" rx="1.2" fill="#e2bc80"/><rect x="-1.5" y="-128" width="3.2" height="12" rx="1.2" fill="#b5361f"/></g>`;
+    s += `<rect x="-24" y="-74" width="48" height="90" rx="7" fill="#b98846"/><rect x="-24" y="-74" width="16" height="90" rx="7" fill="#d4a45f"/><rect x="10" y="-74" width="14" height="90" rx="7" fill="#9a6d33"/>`;
+    s += `<rect x="-25" y="-44" width="50" height="4" fill="#8a5f2a" opacity=".7"/><rect x="-25" y="-6" width="50" height="4" fill="#8a5f2a" opacity=".7"/><ellipse cx="0" cy="-74" rx="24" ry="5" fill="#6b4520"/>`;
+    s += `<text x="0" y="-18" text-anchor="middle" font-size="11" fill="#5a3412" font-family="Cormorant Garamond, serif" font-weight="700" letter-spacing="1">LINH XĂM</text></g></svg>`;
+    return s;
+  }
+  function keoSVG(face, id) {   // face: "ngua" (mặt phẳng lên) | "sap" (lưng cong lên)
+    const ngua = face === "ngua";
+    return `<svg viewBox="-36 -30 72 56" aria-hidden="true"><g id="${id}"><ellipse cx="0" cy="20" rx="26" ry="4" fill="#000" opacity=".14"/>` +
+      (ngua ? `<path d="M-30,14 Q-26,-22 0,-24 Q26,-22 30,14 Z" fill="#e5b98a"/><path d="M-30,14 Q-26,-22 0,-24 Q26,-22 30,14 L22,14 Q20,-12 0,-14 Q-20,-12 -22,14 Z" fill="#c78d55"/><path d="M-30,14 H30" stroke="#8f5a2c" stroke-width="2"/>`
+            : `<path d="M-30,14 Q-26,-22 0,-24 Q26,-22 30,14 Z" fill="#b3301d"/><path d="M-18,-6 Q-6,-18 10,-16" stroke="#e57a5e" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/><path d="M-30,14 H30" stroke="#6e170c" stroke-width="2"/>`) +
+      `</g></svg><span>${ngua ? "Ngửa" : "Sấp"}</span>`;
+  }
+
+  function render() {
+    const b = body(); if (!b) return;
+    if (st.buoc === "chon") {
+      b.innerHTML = `<p class="lead">Chắp tay, lặng lòng nghĩ về điều muốn hỏi, rồi chọn một việc.</p>
+       <div class="choices" role="radiogroup" aria-label="Việc muốn hỏi">${VIEC.map(([k, t]) => `<button type="button" class="choice" role="radio" aria-checked="${st.viec === k}" data-v="${k}">${t}</button>`).join("")}</div>
+       <button type="button" class="primary wide" id="xamCam" ${st.viec ? "" : "disabled"}>Cầm ống xăm</button>
+       <p class="fine">Quẻ ở đây do trang sáng tác theo tinh thần ca dao xứ Huế, để chiêm nghiệm và vui là chính. Việc tiền bạc, sức khỏe, pháp lý xin hỏi người có chuyên môn.</p>`;
+      b.querySelectorAll(".choice").forEach(c => c.onclick = () => { st.viec = c.dataset.v; render(); });
+      b.querySelector("#xamCam").onclick = () => { st.buoc = "lac"; render(); };
+    } else if (st.buoc === "lac") {
+      b.innerHTML = `<p class="lead">Hỏi về <b>${tenViec(st.viec)}</b>. Nghiêng ống và lắc nhẹ cho tới khi một thẻ rơi ra.</p>
+       <div class="xam-stage">${ongSVG()}</div>
+       <button type="button" class="primary wide" id="xamLac">Lắc ống xăm</button>
+       <p class="fine" id="xamHint">${"DeviceMotionEvent" in window ? "Trên điện thoại, bạn cũng có thể lắc máy." : ""}</p>`;
+      b.querySelector("#xamLac").onclick = () => { askMotion(); lac(); };
+    } else if (st.buoc === "keo") {
+      b.innerHTML = `<div class="so-the"><div class="the" aria-hidden="true"></div><div><small>Thẻ rơi ra</small><b>Số ${st.so}</b></div></div>
+       <p class="lead" style="text-align:center">Gieo đôi keo xin xác nhận. Một sấp một ngửa là được.</p>
+       <div class="keo-stage"><div class="keo" id="k1">${keoSVG("ngua", "kg1")}</div><div class="keo" id="k2">${keoSVG("sap", "kg2")}</div></div>
+       <p class="keo-kq" id="keoKq" aria-live="polite">${st.lan ? "" : "Chưa gieo."}</p>
+       <button type="button" class="primary wide" id="xamKeo">Gieo keo</button>`;
+      b.querySelector("#xamKeo").onclick = gieo;
+    } else {
+      const q = QUE[st.so - 1], [hang, cls] = HANG[q.h];
+      const others = VIEC.filter(v => v[0] !== st.viec);
+      b.innerHTML = `${st.cu ? `<p class="cu">Quẻ bạn đã xin hôm nay, hỏi về ${tenViec(st.viec).toLowerCase()}.</p>` : ""}
+       <article class="laxam" id="laXam">
+        <div class="lx-hd"><div class="seal"><div><small>Quẻ</small><b>${st.so}</b></div></div><div><span class="rank ${cls}">${hang}</span><h3>${q.ten}</h3></div></div>
+        <div class="tho">${q.tho.map(l => `<span>${l}</span>`).join("")}</div>
+        <p class="ban">${q.ban}</p>
+        <div class="giai"><h4>Về ${tenViec(st.viec).toLowerCase()}</h4><p>${q[st.viec]}</p></div>
+        <details class="khac"><summary>Xem lời giải các việc khác</summary><div class="giai" style="margin-top:0;border:0;padding:0"><dl>${others.map(([k, t]) => `<dt>${t}</dt><dd>${q[k]}</dd>`).join("")}</dl></div></details>
+       </article>
+       <div class="btnrow"><button type="button" class="ghost" id="xamLai">Xin cho việc khác</button><button type="button" class="primary" id="xamChep">Chép lời quẻ</button></div>
+       <p class="fine">Quẻ do trang sáng tác, để chiêm nghiệm. Mỗi việc chỉ nên xin một quẻ.</p>`;
+      b.querySelector("#xamLai").onclick = () => { st = { buoc: "chon", viec: null, so: 0, lan: 0, cu: false }; try { localStorage.removeItem("tcm_xam"); } catch (e) {} render(); b.scrollTop = 0; };
+      b.querySelector("#xamChep").onclick = () => chep(q, hang);
+    }
+  }
+  function lac() {
+    if (busy || st.buoc !== "lac") return; busy = true;
+    const ong = document.getElementById("ong"), the = document.getElementById("theRoi"), btn = document.getElementById("xamLac");
+    if (btn) btn.disabled = true;
+    ong.classList.remove("shake"); void ong.getBBox(); ong.classList.add("shake");
+    AM.sfx("xoc");
+    the.style.transform = "translateY(-26px)";
+    setTimeout(() => {
+      ong.classList.remove("shake");
+      the.style.transition = "transform .7s cubic-bezier(.5,0,.9,.5)";
+      the.style.transform = "translate(44px,40px) rotate(78deg)";
+      setTimeout(() => {
+        AM.sfx("the");
+        st.so = 1 + Math.floor(Math.random() * QUE.length); st.lan = 0; st.buoc = "keo"; busy = false;
+        setTimeout(render, 450);
+      }, 650);
+    }, 1550);
+  }
+  function askMotion() {
+    if (motionOn || !("DeviceMotionEvent" in window)) return;
+    const on = () => { motionOn = true; addEventListener("devicemotion", e => {
+      const a = e.accelerationIncludingGravity || e.acceleration; if (!a) return;
+      const m = Math.abs(a.x || 0) + Math.abs(a.y || 0) + Math.abs(a.z || 0);
+      if (m > 32 && Date.now() - lastShake > 2500 && document.getElementById("sheetXam").classList.contains("open")) { lastShake = Date.now(); lac(); }
+    }); };
+    try { if (typeof DeviceMotionEvent.requestPermission === "function") DeviceMotionEvent.requestPermission().then(r => { if (r === "granted") on(); }).catch(() => {}); else on(); } catch (e) {}
+  }
+  function gieo() {
+    if (busy) return; busy = true;
+    const btn = document.getElementById("xamKeo"), kq = document.getElementById("keoKq");
+    btn.disabled = true; kq.className = "keo-kq"; kq.textContent = "…";
+    const a = Math.random() < .5 ? "ngua" : "sap", b = Math.random() < .5 ? "ngua" : "sap";
+    for (const id of ["kg1", "kg2"]) { const g = document.getElementById(id); g.style.transformBox = "fill-box"; g.style.transformOrigin = "50% 50%"; g.classList.remove("toss"); void g.getBBox(); g.classList.add("toss"); }
+    setTimeout(() => {
+      AM.sfx("keo");
+      document.getElementById("k1").innerHTML = keoSVG(a, "kg1"); document.getElementById("k2").innerHTML = keoSVG(b, "kg2");
+      st.lan++; busy = false; btn.disabled = false;
+      if (a !== b) {
+        kq.className = "keo-kq ok"; kq.textContent = `Được keo: một sấp một ngửa. Quẻ số ${st.so} đã được chấp nhận.`;
+        btn.disabled = true;
+        setTimeout(() => { st.buoc = "que"; st.cu = false; luu(); NET.send("xam"); render(); body().scrollTop = 0; }, 1300);
+      } else if (st.lan >= 3) {
+        kq.textContent = "Ba lần chưa được keo. Có lẽ thẻ này chưa ứng với điều bạn hỏi, mời lắc lại ống xăm.";
+        btn.textContent = "Lắc lại ống xăm"; btn.onclick = () => { st.buoc = "lac"; render(); };
+      } else {
+        kq.textContent = (a === "ngua" ? "Hai mặt ngửa (keo cười)." : "Hai mặt sấp (keo úp).") + ` Chưa được, mời gieo lại (lần ${st.lan}/3).`;
+      }
+    }, 780);
+  }
+  function chep(q, hang) {
+    const txt = `Quẻ số ${st.so} · ${hang} · ${q.ten}\n${q.tho.join("\n")}\n${q.ban}\nVề ${tenViec(st.viec).toLowerCase()}: ${q[st.viec]}\n(Tiếng Chuông Thiên Mụ)`;
+    const fallback = () => { const el = document.getElementById("laXam"); if (el) { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); } toast("Đã bôi đen lời quẻ, bạn bấm Sao chép nhé"); };
+    try { navigator.clipboard.writeText(txt).then(() => toast("Đã chép lời quẻ"), fallback); } catch (e) { fallback(); }
+  }
+  return {
+    open() {
+      const last = doc();
+      if (st.buoc === "que" && !last) st = { buoc: "chon", viec: null, so: 0, lan: 0, cu: false };
+      else if (last && st.buoc === "chon") st = { buoc: "que", viec: last.viec, so: last.so, lan: 0, cu: true };
+      render(); openSheet("sheetXam");
+    }
+  };
+})();
+
+/* =====================================================================
+   TIẾNG CHUÔNG THIÊN MỤ — cảnh vật, người có mặt, đồng bộ, giao diện
+   ===================================================================== */
+const $ = id => document.getElementById(id);
+const NS = "http://www.w3.org/2000/svg";
+function mk(tag, at, par) { const e = document.createElementNS(NS, tag); if (at) for (const k in at) e.setAttribute(k, at[k]); if (par) par.appendChild(e); return e; }
+const pts = a => a.map(p => p[0].toFixed(1) + "," + p[1].toFixed(1)).join(" ");
+const poly = (par, a, at) => mk("polygon", { points: pts(a), ...at }, par);
+const rnd = (a, b) => a + Math.random() * (b - a);
+const hash = s => { let h = 0; for (const c of String(s)) h = (h * 31 + c.charCodeAt(0)) | 0; return Math.abs(h); };
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const stage = $("stage");
+const ZN = { san: "Bến sông", dien: "Chính điện" };
+const HUONG_PHUT = 30;
+let scene = "san", entered = false, myName = "", busyGo = false;
+let SL = {}, DL = {}, STICKS = null, BOATG = null, OAR = null, BOATGLOW = null, BIRDS = [], TOWER_NICHES = [];
+const VIS = { x0: 0, x1: 600 };
+
+/* ---------- Mạng: chế độ thử (một máy) hoặc Firebase ---------- */
+const NET = {
+  mode: "solo", uid: null, offset: 0, people: {}, msgs: [], msgsLoaded: false, huong: [], admin: false, joined: false,
+  now() { return Date.now() + this.offset; },
+  send() { return Promise.resolve(); }, sendMsg() { return Promise.reject(new Error("chưa sẵn sàng")); }, delMsg() {}, join() {}, zone() {}
+};
+
+/* ===================== THỜI GIAN TRONG NGÀY (giờ Huế) ===================== */
+// giờ, sky1, sky2, far, hill, pine, w1, w2, bank, cloudA, shade, glow, mist, win
+const KF = [
+ [0,    "#0b1430", "#24315c", "#1b2541", "#14231d", "#0e1a15", "#1c3243", "#0b1722", "#1c2f24", .12, .44, 1, .06, .06],
+ [4.9,  "#101a38", "#2c3866", "#1f2a48", "#172a22", "#101e18", "#20384a", "#0e1b27", "#203528", .14, .4, 1, .12, .08],
+ [5.9,  "#7282b4", "#f1c3a3", "#9aa2b8", "#4b6a54", "#34503e", "#b5b6c3", "#6a8692", "#53704d", .6, .12, .55, .6, .35],
+ [7.2,  "#a0cbe6", "#f3e7d0", "#b2c3c8", "#5c895e", "#3e6947", "#8fc0b8", "#4e8a84", "#6e995d", .8, .03, .08, .32, .75],
+ [9.5,  "#8ec6ea", "#e8f2ee", "#a9c0c8", "#5f8f5d", "#3c6b45", "#84bfb5", "#3e7e78", "#73a061", .85, 0, 0, .04, 1],
+ [15,   "#94c3e3", "#f1eedb", "#adbfc4", "#628d58", "#3f6a43", "#8dbfb0", "#437f77", "#77a05e", .85, 0, 0, .02, 1],
+ [17,   "#8da5cf", "#f6d39b", "#b5a8a7", "#617e51", "#42603d", "#c7b38e", "#5b7e76", "#788e54", .75, .05, .18, .14, .9],
+ [18.2, "#5a4987", "#f0a37b", "#7c6c89", "#3c4c44", "#2b3932", "#a37e8e", "#3e4e62", "#3e4c3b", .65, .18, .7, .25, .45],
+ [19.3, "#1e244f", "#5c4a79", "#2d304f", "#1c2a25", "#131e19", "#3c3e62", "#151e2f", "#21302a", .25, .36, 1, .12, .15],
+ [24,   "#0b1430", "#24315c", "#1b2541", "#14231d", "#0e1a15", "#1c3243", "#0b1722", "#1c2f24", .12, .44, 1, .06, .06]
+];
+const VARS = ["--sky1", "--sky2", "--far", "--hill", "--pine", "--w1", "--w2", "--bank", "--cloudA", "--shade", "--glow", "--mist", "--win"];
+const hexRGB = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+const mixC = (a, b, t) => { const A = hexRGB(a), B = hexRGB(b); return "#" + A.map((v, i) => Math.round(v + (B[i] - v) * t).toString(16).padStart(2, "0")).join(""); };
+let GIO = 12;
+function gioHue() {
+  try { const q = new URLSearchParams(location.search).get("h"); if (q !== null && q !== "" && !isNaN(+q)) return ((+q) % 24 + 24) % 24; } catch (e) {}
+  return ((NET.now() / 3600000) + 7) % 24;          // Việt Nam: UTC+7, không đổi giờ
+}
+const nhanGio = h => h < 5 ? "Đêm khuya" : h < 7 ? "Bình minh" : h < 11 ? "Buổi sáng" : h < 13.5 ? "Buổi trưa" : h < 17 ? "Buổi chiều" : h < 19 ? "Hoàng hôn" : "Đêm trăng";
+function applyTime() {
+  const h = GIO = gioHue(); let i = 0;
+  while (i < KF.length - 2 && KF[i + 1][0] <= h) i++;
+  const a = KF[i], b = KF[i + 1], t = (h - a[0]) / (b[0] - a[0]), s = stage.style;
+  VARS.forEach((k, j) => { const va = a[j + 1], vb = b[j + 1]; s.setProperty(k, typeof va === "string" ? mixC(va, vb, t) : (va + (vb - va) * t).toFixed(3)); });
+  s.setProperty("--sceneBg", mixC(a[7], b[7], t));
+  const day = h > 5.6 && h < 18.7, sun = $("sunG"), moon = $("moonG"), gl = $("s_glints");
+  let gx = 455;
+  if (day) { const k = (h - 5.6) / 13.1; gx = 110 + k * 380; sun.setAttribute("transform", `translate(${gx.toFixed(1)} ${(520 - Math.sin(k * Math.PI) * 380).toFixed(1)})`); sun.style.display = ""; }
+  else sun.style.display = "none";
+  moon.style.display = (h > 6.5 && h < 17.8) ? "none" : "";
+  gl.setAttribute("transform", `translate(${(gx - 300).toFixed(1)} 0)`);
+  gl.style.opacity = day ? (h < 8 || h > 16.5 ? .8 : .35) : .6;
+  $("chipTime").textContent = "Giờ Huế · " + nhanGio(h);
+  const night = h < 5.6 || h > 18.3;
+  if (night && SL.hoadang && HOAS.filter(x => !x.label).length < 3) launchHoa(null, false);
+}
+
+/* ===================== CẢNH BẾN SÔNG – CHÙA THIÊN MỤ ===================== */
+function oct(par, cx, yb, w, h, c) {          // khối bát giác nhìn chính diện: mặt trái – trước – phải
+  const a = w / 2, f = w * .207;
+  poly(par, [[cx - a, yb], [cx - f, yb], [cx - f, yb - h], [cx - a, yb - h]], { fill: c[0] });
+  poly(par, [[cx - f, yb], [cx + f, yb], [cx + f, yb - h], [cx - f, yb - h]], { fill: c[1] });
+  poly(par, [[cx + f, yb], [cx + a, yb], [cx + a, yb - h], [cx + f, yb - h]], { fill: c[2] });
+}
+function arch(par, x, yb, w, h, fill) {
+  const r = w / 2;
+  return mk("path", { d: `M${(x - r).toFixed(1)},${yb.toFixed(1)}V${(yb - h + r).toFixed(1)}A${r.toFixed(1)},${r.toFixed(1)} 0 0 1 ${(x + r).toFixed(1)},${(yb - h + r).toFixed(1)}V${yb.toFixed(1)}Z`, fill }, par);
+}
+const bez = (p0, p1, p2, p3, t) => { const u = 1 - t; return [0, 1].map(i => u * u * u * p0[i] + 3 * u * u * t * p1[i] + 3 * u * t * t * p2[i] + t * t * t * p3[i]); };
+
+function tower(par) {                            // tháp Phước Duyên: 7 tầng bát giác
+  const g = mk("g", { id: "towerG", class: "tap" }, par);
+  const C = ["#d8a978", "#c38f61", "#a07049"], K = ["#ecdcc0", "#f5e9d3", "#cfbb9a"], S = ["#d9cfba", "#e7ddc8", "#bdb29b"];
+  oct(g, 300, 584, 192, 10, S); oct(g, 300, 574, 170, 10, S);
+  const W = [100, 90, 81, 73, 66, 60, 54], H = [62, 52, 46, 41, 37, 33, 30];
+  let y = 564; TOWER_NICHES = [];
+  for (let i = 0; i < 7; i++) {
+    oct(g, 300, y, W[i], H[i], C);
+    const nw = W[i] * .21, nh = i === 0 ? H[i] * .66 : H[i] * .56, nb = i === 0 ? y : y - H[i] * .16;
+    arch(g, 300, nb, nw, nh, "#331d12");
+    mk("circle", { cx: 300, cy: (nb - nh * .4).toFixed(1), r: (nw * .17).toFixed(1), fill: "#c9a050", opacity: .85 }, g);
+    for (const sx of [-1, 1]) arch(g, 300 + sx * W[i] * .354, y - H[i] * .16, nw * .5, H[i] * .46, "#4a2b1b");
+    TOWER_NICHES.push([300, nb - nh * .45, nw]);
+    y -= H[i];
+    mk("rect", { x: 300 - W[i] / 2, y, width: W[i], height: 3, fill: "#6e4a30", opacity: .5 }, g);
+    oct(g, 300, y, W[i] + 12, 5, K);
+    y -= 5;
+  }
+  oct(g, 300, y, 32, 6, C); y -= 6;
+  mk("ellipse", { cx: 300, cy: y - 10, rx: 12, ry: 11, fill: "url(#gBronze)" }, g);
+  mk("rect", { x: 296, y: y - 26, width: 8, height: 6, fill: "#7a5630" }, g);
+  mk("ellipse", { cx: 300, cy: y - 31, rx: 6, ry: 6.5, fill: "url(#gBronze)" }, g);
+  mk("line", { x1: 300, y1: y - 37, x2: 300, y2: y - 56, stroke: "#6b4a26", "stroke-width": 2.2 }, g);
+  mk("circle", { cx: 300, cy: y - 57, r: 2.6, fill: "#e0b55a" }, g);
+}
+function pavilion(par, cx, yb, s, kind) {       // nhà lục giác hai tầng mái
+  const g = mk("g", { transform: `translate(${cx} ${yb}) scale(${s})` }, par);
+  if (kind === "chuong") { g.id = "lauChuong"; g.setAttribute("class", "tap"); }
+  poly(g, [[-66, 0], [66, 0], [60, -10], [-60, -10]], { fill: "#cdc1a8" });
+  mk("rect", { x: -48, y: -96, width: 96, height: 86, fill: "#341c14" }, g);
+  if (kind === "chuong") {
+    const b = mk("g", { id: "bigBell" }, g);
+    mk("line", { x1: 0, y1: -94, x2: 0, y2: -80, stroke: "#1e100a", "stroke-width": 2 }, b);
+    mk("path", { d: "M-13,-52Q-13,-80 0,-80Q13,-80 13,-52L16,-30H-16Z", fill: "url(#gBronze)" }, b);
+    mk("rect", { x: -18, y: -32, width: 36, height: 5, rx: 2, fill: "#a07a30" }, b);
+    mk("path", { d: "M-14,-62H14M-15,-46H15", stroke: "#6b4a1a", "stroke-width": 1 }, b);
+    mk("line", { x1: 33, y1: -92, x2: 33, y2: -62, stroke: "#1e100a", "stroke-width": 1 }, g);
+    mk("line", { x1: 21, y1: -62, x2: 45, y2: -62, stroke: "#7a5634", "stroke-width": 4.5, "stroke-linecap": "round" }, g);
+  } else {
+    mk("ellipse", { cx: 0, cy: -16, rx: 27, ry: 8, fill: "#7d8478" }, g); mk("circle", { cx: 27, cy: -19, r: 5, fill: "#7d8478" }, g);
+    mk("path", { d: "M-14,-16V-66Q-14,-77 0,-77Q14,-77 14,-66V-16Z", fill: "#a8ab9e" }, g);
+    mk("path", { d: "M-8,-62V-24M-3,-66V-24M2,-66V-24M7,-62V-24", stroke: "#878a7d", "stroke-width": 1.2 }, g);
+  }
+  for (const x of [-52, -20, 20, 52]) mk("rect", { x: x - 3.5, y: -98, width: 7, height: 88, fill: "#8d2a1d" }, g);
+  mk("rect", { x: -58, y: -102, width: 116, height: 8, fill: "#6b2317" }, g);
+  mk("path", { d: "M-84,-110Q-72,-97 -56,-97L56,-97Q72,-97 84,-110L74,-108Q44,-126 0,-128Q-44,-126 -74,-108Z", fill: "url(#gRoof)" }, g);
+  mk("path", { d: "M-84,-110Q-72,-97 -56,-97L56,-97Q72,-97 84,-110", fill: "none", stroke: "#e2c48a", "stroke-width": 1.6 }, g);
+  mk("rect", { x: -30, y: -150, width: 60, height: 24, fill: "#8d2a1d" }, g);
+  mk("rect", { x: -26, y: -146, width: 52, height: 14, fill: "#c79a46", opacity: .45 }, g);
+  for (const x of [-30, -10, 10, 30]) mk("rect", { x: x - 2, y: -150, width: 4, height: 24, fill: "#6b2317" }, g);
+  mk("path", { d: "M-58,-152Q-48,-143 -36,-143L36,-143Q48,-143 58,-152L50,-151Q28,-170 0,-172Q-28,-170 -50,-151Z", fill: "url(#gRoof)" }, g);
+  mk("path", { d: "M-58,-152Q-48,-143 -36,-143L36,-143Q48,-143 58,-152", fill: "none", stroke: "#e2c48a", "stroke-width": 1.4 }, g);
+  mk("ellipse", { cx: 0, cy: -178, rx: 6, ry: 6.5, fill: "#c89a46" }, g); mk("ellipse", { cx: 0, cy: -188, rx: 3.6, ry: 4, fill: "#c89a46" }, g);
+  mk("line", { x1: 0, y1: -192, x2: 0, y2: -199, stroke: "#c89a46", "stroke-width": 1.4 }, g);
+  for (const sx of [-1, 1]) {
+    mk("path", { d: `M${84 * sx},-110q${6 * sx},-6 ${4 * sx},-15`, fill: "none", stroke: "#5a2a1a", "stroke-width": 3, "stroke-linecap": "round" }, g);
+    mk("path", { d: `M${58 * sx},-152q${5 * sx},-5 ${3 * sx},-12`, fill: "none", stroke: "#5a2a1a", "stroke-width": 2.4, "stroke-linecap": "round" }, g);
+  }
+}
+function tru(par, x) {                          // trụ biểu đầu bậc cấp
+  mk("rect", { x: x - 10, y: 598, width: 20, height: 10, fill: "#d3c9b4" }, par);
+  mk("rect", { x: x - 6.5, y: 512, width: 13, height: 88, fill: "#ece4d3" }, par);
+  mk("rect", { x: x + 2.5, y: 512, width: 4, height: 88, fill: "#cec4ae" }, par);
+  mk("rect", { x: x - 3.5, y: 528, width: 7, height: 34, fill: "none", stroke: "#c4b89f", "stroke-width": 1 }, par);
+  mk("rect", { x: x - 9, y: 503, width: 18, height: 10, fill: "#dcd2bd" }, par);
+  mk("rect", { x: x - 6, y: 506, width: 12, height: 5, fill: "#3a2418", opacity: .65 }, par);
+  mk("path", { d: `M${x - 7},503Q${x - 8},489 ${x},478Q${x + 8},489 ${x + 7},503Z`, fill: "#ebe2cf" }, par);
+  mk("circle", { cx: x, cy: 476, r: 2.2, fill: "#d1c4a6" }, par);
+}
+function pine(par, x, yb, h) {                  // cây thông đồi Hà Khê
+  const g = mk("g", {}, par);
+  mk("path", { d: `M${x - 3},${yb}L${x - 1.5},${yb - h * .8}L${x + 1.5},${yb - h * .8}L${x + 3},${yb}Z`, fill: "#33261d", opacity: .8 }, g);
+  for (let i = 0; i < 6; i++) {
+    const k = i / 5, yy = yb - h * (.32 + .64 * k), w = h * (.34 - .17 * k), dx = (i % 2 ? 1 : -1) * w * .3;
+    mk("ellipse", { cx: (x + dx).toFixed(1), cy: yy.toFixed(1), rx: (w * .62).toFixed(1), ry: (w * .2 + 3).toFixed(1), "fill-opacity": i % 2 ? .84 : 1 }, g);
+  }
+  mk("ellipse", { cx: x, cy: (yb - h * .99).toFixed(1), rx: (h * .07).toFixed(1), ry: (h * .05).toFixed(1) }, g);
+}
+function leaves(par, x, y, n, dir) {
+  for (let j = 0; j < n; j++) {
+    const ang = dir > 0 ? rnd(-20, 150) : rnd(30, 200), len = rnd(22, 36);
+    const lg = mk("g", { transform: `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${ang.toFixed(0)})` }, par);
+    mk("path", { d: `M0,0C${(len * .2).toFixed(1)},-3.4 ${(len * .7).toFixed(1)},-3.4 ${len.toFixed(1)},1.5C${(len * .7).toFixed(1)},2.6 ${(len * .2).toFixed(1)},2.6 0,0Z`, fill: j % 2 ? "#6c8c35" : "#86a64a", class: "flut", style: `animation-delay:-${rnd(0, 3).toFixed(1)}s;animation-duration:${rnd(2.6, 4.2).toFixed(1)}s` }, lg);
+  }
+}
+function bamboo(par, list, dir) {               // bụi trúc la đà
+  list.forEach(([x0, y0, x1, y1, w], i) => {
+    const g = mk("g", { class: "sway", style: `transform-origin:${x0}px ${y0}px;animation-delay:-${(i * 1.1).toFixed(1)}s;animation-duration:${(5.6 + i * .7).toFixed(1)}s` }, par);
+    const p0 = [x0, y0], p1 = [x0 + 6 * dir, y0 - (y0 - y1) * .45], p2 = [x1 - (x1 - x0) * .25, y1 + (y0 - y1) * .18], p3 = [x1, y1];
+    mk("path", { d: `M${p0}C${p1} ${p2} ${p3}`, fill: "none", stroke: i % 2 ? "#7f9a46" : "#6d883a", "stroke-width": w, "stroke-linecap": "round" }, g);
+    for (let k = .1; k < .95; k += .11) { const [x, y] = bez(p0, p1, p2, p3, k); mk("line", { x1: (x - w * .55).toFixed(1), y1: y.toFixed(1), x2: (x + w * .55).toFixed(1), y2: (y - 1).toFixed(1), stroke: "#4f6526", "stroke-width": 1.6 }, g); }
+    for (const k of [.55, .68, .8, .9, 1]) { const [x, y] = bez(p0, p1, p2, p3, k); leaves(g, x, y, 4 + Math.round(k * 3), dir); }
+  });
+}
+function buildBoat(par) {                       // đò có mui, cô lái áo tím nón lá
+  const g = mk("g", { id: "boat", class: "tap" }, par);
+  for (let i = 0; i < 3; i++) mk("path", { d: `M-112,${6 + i * 4}q-30,${2 + i} -62,0`, fill: "none", stroke: "#fff", "stroke-opacity": .55, "stroke-width": 1.4, class: "wake", style: `animation-delay:-${(i * .8).toFixed(1)}s` }, g);
+  mk("ellipse", { cx: 0, cy: 8, rx: 106, ry: 4.5, fill: "#000", opacity: .18 }, g);
+  const rf = mk("g", { transform: "translate(0 12) scale(1 -1)", opacity: .2, "pointer-events": "none" }, g);
+  const body = mk("g", { id: "boatBody" }, g);
+  mk("use", { href: "#boatBody" }, rf);
+  mk("path", { d: "M-48,-4C-48,-46 40,-46 40,-4Z", fill: "#b69a6a" }, body);
+  const rib = mk("g", { "clip-path": "url(#cpMui)", stroke: "#8f7448", "stroke-width": 1.3 }, body);
+  for (let x = -44; x < 40; x += 7) mk("line", { x1: x, y1: -46, x2: x, y2: 0 }, rib);
+  mk("path", { d: "M-48,-4C-48,-46 40,-46 40,-4", fill: "none", stroke: "#7d6340", "stroke-width": 2 }, body);
+  mk("ellipse", { cx: 39, cy: -18, rx: 4.5, ry: 15, fill: "#2c2016" }, body);
+  mk("line", { x1: 62, y1: -8, x2: 62, y2: -44, stroke: "#5a3d24", "stroke-width": 2 }, body);
+  mk("line", { x1: 62, y1: -44, x2: 52, y2: -44, stroke: "#5a3d24", "stroke-width": 2 }, body);
+  mk("line", { x1: 53, y1: -44, x2: 53, y2: -37, stroke: "#3a2a1a", "stroke-width": 1 }, body);
+  mk("rect", { x: 49.5, y: -38, width: 7, height: 2, fill: "#d1a24a" }, body);
+  mk("ellipse", { cx: 53, cy: -31, rx: 4.6, ry: 6, fill: "#c4321f" }, body);
+  mk("rect", { x: 49.5, y: -26, width: 7, height: 2, fill: "#d1a24a" }, body);
+  mk("path", { d: "M-106,-14Q-100,4 -70,9L70,9Q100,4 112,-20L102,-17Q88,-5 66,-4L-66,-4Q-92,-5 -98,-13Z", fill: "#3b271a" }, body);
+  mk("path", { d: "M-98,-13Q-92,-5 -66,-4L66,-4Q88,-5 102,-17L100,-12Q86,0 66,1L-66,1Q-90,0 -96,-8Z", fill: "#6e4a30" }, body);
+  mk("path", { d: "M-87,-4L-85,-30Q-81,-38 -75,-38Q-69,-38 -66,-30L-64,-4Z", fill: "#6a4790" }, body);
+  mk("path", { d: "M-86.4,-12L-64.6,-12L-64,-4L-87,-4Z", fill: "#efe8da" }, body);
+  mk("circle", { cx: -75, cy: -43, r: 5.2, fill: "#2a1d16" }, body);
+  mk("path", { d: "M-91,-44L-75,-57L-59,-44Q-75,-41 -91,-44Z", fill: "#e8dbb0", stroke: "#c6b585", "stroke-width": .8 }, body);
+  OAR = mk("g", {}, body);
+  mk("line", { x1: -70, y1: -30, x2: -124, y2: 14, stroke: "#7a5634", "stroke-width": 2.6, "stroke-linecap": "round" }, OAR);
+  mk("ellipse", { cx: -119, cy: 10, rx: 9, ry: 3, transform: "rotate(40 -119 10)", fill: "#6b4a2c" }, OAR);
+  mk("path", { d: "M-80,-30L-70,-30", stroke: "#6a4790", "stroke-width": 3.2, "stroke-linecap": "round" }, body);
+  return g;
+}
+function buildSan() {
+  const R0 = $("sanRoot"), L = SL;
+  for (const k of ["sky", "stars", "sun", "moon", "clouds", "birds", "far", "hill", "pines", "temple", "walkers", "river", "refl", "streaks", "boat", "nearbank", "bamboo", "mist", "shade", "glints", "glow", "hoadang", "tags"]) L[k] = mk("g", { id: "s_" + k }, R0);
+  mk("rect", { x: -1200, y: -400, width: 3000, height: 1100, fill: "url(#gSky)" }, L.sky);
+  L.stars.setAttribute("class", "night");
+  for (let i = 0; i < 90; i++) mk("circle", { cx: rnd(-1000, 1600).toFixed(0), cy: rnd(-380, 430).toFixed(0), r: rnd(.5, 1.8).toFixed(2), fill: "#fff", opacity: rnd(.35, 1).toFixed(2), class: i % 4 ? "st" : "twk", style: `animation-delay:-${rnd(0, 3).toFixed(1)}s` }, L.stars);
+  const sun = mk("g", { id: "sunG" }, L.sun); mk("circle", { r: 82, fill: "url(#gSun)" }, sun); mk("circle", { r: 22, fill: "#fff4d2" }, sun);
+  const moon = mk("g", { id: "moonG", transform: "translate(455 170)", class: "night" }, L.moon);
+  mk("circle", { r: 66, fill: "url(#gMoon)" }, moon); mk("circle", { r: 17, fill: "#f6f1dc" }, moon);
+  mk("circle", { cx: -5, cy: -4, r: 3.5, fill: "#e4dcc2" }, moon); mk("circle", { cx: 6, cy: 5, r: 2.4, fill: "#e4dcc2" }, moon);
+  L.clouds.setAttribute("style", "opacity:var(--cloudA)");
+  [[70, 0], [150, -40], [250, -85], [330, -120], [110, -140], [205, -20], [40, -70]].forEach(([y, d], i) => {
+    const g = mk("g", { class: "cloud", style: `animation-delay:${d}s;animation-duration:${150 + i * 25}s` }, L.clouds);
+    const x = rnd(-100, 300), w = rnd(40, 85);
+    mk("ellipse", { cx: x, cy: y, rx: w, ry: w * .2, fill: "#fff" }, g);
+    mk("ellipse", { cx: x + w * .45, cy: y - w * .14, rx: w * .55, ry: w * .2, fill: "#fff" }, g);
+    mk("ellipse", { cx: x - w * .4, cy: y + 2, rx: w * .4, ry: w * .13, fill: "#fff" }, g);
+  });
+  L.birds.setAttribute("style", "opacity:calc(1 - var(--glow))");
+  BIRDS = [0, 1, 2].map(i => {
+    const g = mk("g", {}, L.birds), w = mk("g", { class: "wing", style: `animation-delay:-${i * .3}s` }, g);
+    mk("path", { d: "M-11,-1Q-6,-6 0,0Q6,-6 11,-1", fill: "none", stroke: "#fbfaf4", "stroke-width": 1.8, "stroke-linecap": "round" }, w);
+    return { g, x: rnd(-200, 600), y: rnd(120, 260), v: rnd(10, 16), ph: rnd(0, 6) };
+  });
+  mk("path", { d: "M-1200,560L-1200,470Q-1000,430 -820,462T-460,452T-100,440T260,428T620,446T980,432T1340,450T1800,440V560Z", style: "fill:var(--far)" }, L.far);
+  mk("path", { d: "M-1200,640L-1200,560C-800,540 -400,560 -150,545C40,532 170,470 300,460C430,470 560,532 750,545C1000,560 1400,540 1800,560V640Z", style: "fill:var(--hill)" }, L.hill);
+  L.pines.setAttribute("style", "fill:var(--pine)");
+  for (const [x, yb, h] of [[-620, 560, 150], [-520, 556, 180], [-410, 556, 170], [-300, 552, 205], [-190, 560, 195], [-80, 562, 210], [20, 566, 230], [70, 568, 190], [118, 562, 252], [482, 562, 244], [532, 566, 200], [586, 562, 230], [690, 556, 205], [800, 552, 190], [910, 556, 175], [1030, 560, 160], [1140, 558, 170]]) pine(L.pines, x, yb, h);
+
+  const T = L.temple;
+  mk("rect", { x: -1200, y: 588, width: 3000, height: 96, style: "fill:var(--bank)" }, T);
+  poly(T, [[78, 576], [522, 576], [540, 604], [60, 604]], { fill: "#d6cbb2" });
+  pavilion(T, 140, 578, .86, "bia");
+  pavilion(T, 460, 578, .86, "chuong");
+  tower(T);
+  for (const [x0, x1] of [[64, 252], [348, 536]]) {
+    mk("rect", { x: x0, y: 596, width: x1 - x0, height: 9, fill: "#e4dac5" }, T);
+    mk("rect", { x: x0, y: 594, width: x1 - x0, height: 2.5, fill: "#f2eadb" }, T);
+    for (let x = x0 + 4; x < x1 - 4; x += 14) mk("rect", { x, y: 598, width: 5, height: 6, fill: "#c8bca4" }, T);
+  }
+  tru(T, 246); tru(T, 354);
+  const S = mk("g", { id: "stairs", class: "tap" }, T);
+  poly(S, [[258, 604], [342, 604], [372, 666], [228, 666]], { fill: "#cbbfa5" });
+  for (let k = 1; k < 14; k++) { const yy = 604 + k * 62 / 14, hw = 42 + (k / 14) * 30; mk("line", { x1: 300 - hw, y1: yy, x2: 300 + hw, y2: yy, stroke: "#a3977d", "stroke-width": 1.1 }, S); }
+  poly(S, [[252, 602], [259, 602], [229, 668], [220, 668]], { fill: "#b5a98f" });
+  poly(S, [[341, 602], [348, 602], [380, 668], [371, 668]], { fill: "#b5a98f" });
+  mk("rect", { x: -1200, y: 664, width: 3000, height: 20, fill: "#aaa290" }, T);
+  mk("rect", { x: -1200, y: 664, width: 3000, height: 3, fill: "#c6bfae" }, T);
+  poly(T, [[196, 664], [404, 664], [416, 684], [184, 684]], { fill: "#c8c0aa" });
+  mk("rect", { x: 204, y: 684, width: 192, height: 5, fill: "#b2aa94" }, T);
+  mk("rect", { x: 214, y: 689, width: 172, height: 4, fill: "#9e9782" }, T);
+
+  mk("rect", { x: -1200, y: 682, width: 3000, height: 700, fill: "url(#gWater)" }, L.river);
+  L.refl.setAttribute("clip-path", "url(#cpRiver)"); L.refl.setAttribute("opacity", ".22"); L.refl.setAttribute("pointer-events", "none");
+  for (const id of ["s_hill", "s_pines", "s_temple"]) mk("use", { href: "#" + id, transform: "matrix(1 0 0 -1 0 1366)" }, L.refl);
+  for (let i = 0; i < 56; i++) {
+    const y = rnd(692, 995), w = rnd(20, 120), x = rnd(-800, 1400), lightLine = i % 3 === 0;
+    mk("line", { x1: x.toFixed(0), y1: y.toFixed(0), x2: (x + w).toFixed(0), y2: y.toFixed(0), "stroke-width": rnd(1, 2.4).toFixed(1), "stroke-linecap": "round", class: "rip", style: `stroke:${lightLine ? "#ffffff" : "var(--w1)"};animation-delay:-${rnd(0, 6).toFixed(1)}s;opacity:${lightLine ? .35 : .6}` }, L.streaks);
+  }
+  for (let i = 0; i < 18; i++) {
+    const y = 702 + i * 13 + rnd(-3, 3), w = 6 + i * 1.8 + rnd(0, 8), dx = rnd(-10, 10);
+    mk("line", { x1: (300 - w / 2 + dx).toFixed(1), y1: y.toFixed(1), x2: (300 + w / 2 + dx).toFixed(1), y2: y.toFixed(1), stroke: "#fff6da", "stroke-width": 1.6, "stroke-linecap": "round", class: "twk", style: `animation-delay:-${rnd(0, 2.6).toFixed(2)}s` }, L.glints);
+  }
+  BOATG = buildBoat(L.boat);
+  mk("path", { d: "M-1200,1100L-1200,930C-700,920 -300,925 -80,935C40,940 120,968 178,1010L178,1100Z", style: "fill:var(--pine)" }, L.nearbank);
+  mk("path", { d: "M1800,1100L1800,935C1300,925 900,930 700,938C620,944 560,975 530,1010L530,1100Z", style: "fill:var(--pine)" }, L.nearbank);
+  bamboo(L.bamboo, [[-90, 948, -20, 380, 8], [-60, 952, 22, 342, 9], [-30, 952, 62, 300, 9], [0, 960, 120, 332, 8], [24, 966, 160, 382, 7], [46, 972, 205, 432, 6]], 1);
+  bamboo(L.bamboo, [[700, 958, 640, 380, 8], [670, 964, 590, 330, 7], [730, 952, 690, 360, 8]], -1);
+  mk("rect", { x: -1200, y: 618, width: 3000, height: 120, fill: "url(#gMist)", style: "opacity:var(--mist)", "pointer-events": "none" }, L.mist);
+  mk("rect", { x: -1200, y: -400, width: 3000, height: 1600, fill: "#0a1130", style: "opacity:var(--shade)", "pointer-events": "none" }, L.shade);
+  L.glow.setAttribute("class", "night"); L.glow.setAttribute("pointer-events", "none");
+  mk("ellipse", { cx: 300, cy: 410, rx: 118, ry: 230, fill: "url(#gGlow)", opacity: .2 }, L.glow);
+  for (const [x, y, w] of TOWER_NICHES) mk("circle", { cx: x, cy: y.toFixed(1), r: (w * 1.15).toFixed(1), fill: "url(#gGlow)", opacity: .9 }, L.glow);
+  for (const x of [246, 354]) mk("circle", { cx: x, cy: 508, r: 13, fill: "url(#gGlow)" }, L.glow);
+  for (const x of [140, 460]) mk("circle", { cx: x, cy: 528, r: 36, fill: "url(#gGlow)", opacity: .55 }, L.glow);
+  mk("ellipse", { cx: 300, cy: 805, rx: 34, ry: 96, fill: "url(#gGlow)", opacity: .22 }, L.glow);
+  BOATGLOW = mk("circle", { r: 26, fill: "url(#gGlow)", opacity: .9 }, L.glow);
+  L.hoadang.setAttribute("pointer-events", "none");
+  L.tags.setAttribute("pointer-events", "none");
+}
+
+/* ===================== CHÍNH ĐIỆN ===================== */
+const PX = (x, z) => 300 + x * 450 / z, PY = (z, h = 0) => 380 + (450 - h) / z, PP = (x, z, h = 0) => [PX(x, z), PY(z, h)];
+const SEATS = [];
+for (const z of [1.5, 1.34, 1.2, 1.08, .97]) for (const x of [-.2, .2, -.44, .44]) SEATS.push([x, z]);
+function buddha(par, cx, cy) {                  // tượng Phật ngồi kiết già, ấn thiền định
+  const g = mk("g", { id: "phat", class: "tap", transform: `translate(${cx} ${cy})` }, par), G = "url(#gGold)", D = "#8a5c1e";
+  mk("path", { d: "M-94,40Q-106,-60 -40,-122Q0,-152 40,-122Q106,-60 94,40Z", fill: "#f0c862", opacity: .1 }, g);
+  mk("circle", { cx: 0, cy: -120, r: 46, fill: "#f2d07c", opacity: .16 }, g);
+  mk("circle", { cx: 0, cy: -120, r: 46, fill: "none", stroke: "#e8c46c", "stroke-width": 2, opacity: .7 }, g);
+  mk("ellipse", { cx: 0, cy: 40, rx: 94, ry: 10, fill: "#7a4e18" }, g);
+  for (let i = -5; i <= 5; i++) mk("path", { d: `M${i * 17 - 10},40Q${i * 17 - 11},22 ${i * 17},12Q${i * 17 + 11},22 ${i * 17 + 10},40Z`, fill: i % 2 ? "#e6a0ab" : "#f2bcc3", stroke: "#b8735a", "stroke-width": .6 }, g);
+  for (let i = -4; i <= 4; i++) mk("path", { d: `M${i * 19 - 11},44Q${i * 19 - 12},30 ${i * 19},22Q${i * 19 + 12},30 ${i * 19 + 11},44Z`, fill: i % 2 ? "#f2bcc3" : "#e6a0ab", stroke: "#b8735a", "stroke-width": .6 }, g);
+  mk("path", { d: "M-80,22Q-84,-2 -52,-8L52,-8Q84,-2 80,22Q42,32 0,30Q-42,32 -80,22Z", fill: G }, g);
+  mk("path", { d: "M-60,14Q-20,4 30,12M-40,22Q10,14 62,20", fill: "none", stroke: D, "stroke-width": 1.4, opacity: .7 }, g);
+  mk("path", { d: "M-40,-6Q-47,-50 -35,-80Q-24,-94 0,-96Q24,-94 35,-80Q47,-50 40,-6Z", fill: G }, g);
+  mk("path", { d: "M-35,-80Q-58,-60 -54,-30Q-50,-10 -22,-8L-16,-17Q-36,-24 -38,-42Q-38,-62 -29,-76Z", fill: G }, g);
+  mk("path", { d: "M35,-80Q58,-60 54,-30Q50,-10 22,-8L16,-17Q36,-24 38,-42Q38,-62 29,-76Z", fill: G }, g);
+  mk("ellipse", { cx: 0, cy: -13, rx: 22, ry: 7, fill: "#f4d996" }, g);
+  mk("path", { d: "M-18,-13Q0,-19 18,-13", fill: "none", stroke: D, "stroke-width": 1 }, g);
+  mk("path", { d: "M-31,-80Q-4,-62 34,-30M-20,-86Q6,-70 38,-48", fill: "none", stroke: D, "stroke-width": 1.4, opacity: .75 }, g);
+  mk("rect", { x: -9, y: -106, width: 18, height: 14, fill: G }, g);
+  mk("path", { d: "M-8,-100Q0,-97 8,-100M-8,-96Q0,-93 8,-96", fill: "none", stroke: D, "stroke-width": .9 }, g);
+  mk("ellipse", { cx: -20, cy: -117, rx: 4.5, ry: 12, fill: G }, g); mk("ellipse", { cx: 20, cy: -117, rx: 4.5, ry: 12, fill: G }, g);
+  mk("ellipse", { cx: 0, cy: -121, rx: 19, ry: 22, fill: G }, g);
+  mk("path", { d: "M-19,-124Q-20,-146 0,-147Q20,-146 19,-124Q10,-133 0,-133Q-10,-133 -19,-124Z", fill: "#4f3410" }, g);
+  mk("circle", { cx: 0, cy: -150, r: 9, fill: "#4f3410" }, g);
+  for (let yy = -146; yy < -128; yy += 4.5) for (let xx = -16; xx <= 16; xx += 5) if (Math.hypot(xx, (yy + 136) * 1.2) < 19) mk("circle", { cx: xx + ((yy / 4.5) % 2 ? 2.5 : 0), cy: yy, r: 1.3, fill: "#7a5218" }, g);
+  for (const [xx, yy] of [[-4, -154], [4, -153], [0, -147], [-5, -147], [5, -147]]) mk("circle", { cx: xx, cy: yy, r: 1.3, fill: "#7a5218" }, g);
+  mk("circle", { cx: 0, cy: -129, r: 1.3, fill: "#c98a2a" }, g);
+  mk("path", { d: "M-12,-126q5,-2.6 10,0M2,-126q5,-2.6 10,0", fill: "none", stroke: D, "stroke-width": .9, opacity: .7 }, g);
+  mk("path", { d: "M-11,-121q4.5,2.6 9,0M2,-121q4.5,2.6 9,0", fill: "none", stroke: D, "stroke-width": 1.2 }, g);
+  mk("path", { d: "M0,-121q-2.4,7 0,8.5", fill: "none", stroke: D, "stroke-width": .9, opacity: .8 }, g);
+  mk("path", { d: "M-4.5,-108q4.5,2.4 9,0", fill: "none", stroke: "#a3542a", "stroke-width": 1.2 }, g);
+}
+function buildDien() {
+  const R0 = $("dienRoot"), L = DL;
+  for (const k of ["room", "windows", "back", "altar", "cols", "floorItems", "mats", "sitters", "near", "shade", "glow", "tags"]) L[k] = mk("g", {}, R0);
+  const zb = 2.5, zn = .42, xw = .833, hc = 925;
+  poly(L.room, [PP(-xw, zb, hc), PP(xw, zb, hc), PP(xw, zn, hc), PP(-xw, zn, hc)], { fill: "#22100a" });
+  poly(L.room, [PP(-xw, zb, hc), PP(-xw, zb), PP(-xw, zn), PP(-xw, zn, hc)], { fill: "url(#gWallL)" });
+  poly(L.room, [PP(xw, zb, hc), PP(xw, zb), PP(xw, zn), PP(xw, zn, hc)], { fill: "url(#gWallR)" });
+  poly(L.room, [PP(-xw, zb), PP(xw, zb), PP(xw, zn), PP(-xw, zn)], { fill: "url(#gFloor)" });
+  mk("rect", { x: 150, y: 190, width: 300, height: 370, fill: "url(#gBack)" }, L.room);
+  for (let x = -.8; x <= .81; x += .2) mk("line", { x1: PX(x, zb).toFixed(1), y1: PY(zb), x2: PX(x, zn).toFixed(1), y2: PY(zn), stroke: "#2e1509", "stroke-width": 1, opacity: .55 }, L.room);
+  for (const z of [2.2, 1.95, 1.72, 1.52, 1.35, 1.2, 1.07, .95, .85, .76, .68, .6, .53, .47]) mk("line", { x1: PX(-xw, z).toFixed(1), y1: PY(z).toFixed(1), x2: PX(xw, z).toFixed(1), y2: PY(z).toFixed(1), stroke: "#2e1509", "stroke-width": 1, opacity: .5 }, L.room);
+  poly(L.room, [PP(-.1, 2.35), PP(.1, 2.35), PP(.1, zn), PP(-.1, zn)], { fill: "#7d1b11", opacity: .85 });
+  for (const x of [-.55, -.18, .18, .55]) mk("line", { x1: PX(x, zb).toFixed(1), y1: PY(zb, hc), x2: PX(x, zn).toFixed(1), y2: PY(zn, hc).toFixed(1), stroke: "#140804", "stroke-width": 7 }, L.room);
+  for (const z of [2.2, 1.7, 1.3, 1.0, .75]) mk("line", { x1: PX(-xw, z).toFixed(1), y1: PY(z, hc).toFixed(1), x2: PX(xw, z).toFixed(1), y2: PY(z, hc).toFixed(1), stroke: "#3c1a0d", "stroke-width": (12 / z).toFixed(1) }, L.room);
+
+  L.windows.setAttribute("style", "opacity:calc(.25 + var(--win) * .75)");
+  for (const [z1, z2] of [[2.15, 1.8], [1.5, 1.2]]) for (const sg of [-1, 1]) {
+    const X = xw * sg, a = PP(X, z1, 640), b = PP(X, z2, 640), c = PP(X, z2, 260), d = PP(X, z1, 260);
+    poly(L.windows, [a, b, c, d], { fill: "#efd49a", opacity: .6 });
+    for (let i = 1; i < 5; i++) { const t = i / 5; mk("line", { x1: (a[0] + (b[0] - a[0]) * t).toFixed(1), y1: (a[1] + (b[1] - a[1]) * t).toFixed(1), x2: (d[0] + (c[0] - d[0]) * t).toFixed(1), y2: (d[1] + (c[1] - d[1]) * t).toFixed(1), stroke: "#4a1c0e", "stroke-width": 2.2 }, L.windows); }
+    poly(L.windows, [d, c, PP(.3 * sg, z2 - .3), PP(.15 * sg, z1 - .25)], { fill: sg < 0 ? "url(#gRay)" : "url(#gRayR)" });
+  }
+
+  const B = L.back;
+  mk("circle", { cx: 300, cy: 330, r: 160, fill: "url(#gHalo)" }, B);
+  mk("rect", { x: 192, y: 236, width: 216, height: 250, fill: "none", stroke: "#a77a32", "stroke-width": 1.4, opacity: .6 }, B);
+  for (let i = 0; i < 6; i++) { const x = 198 + i * 6; mk("line", { x1: x, y1: 242, x2: x, y2: 480, stroke: "#a77a32", "stroke-width": .8, opacity: .35 }, B); mk("line", { x1: 600 - x, y1: 242, x2: 600 - x, y2: 480, stroke: "#a77a32", "stroke-width": .8, opacity: .35 }, B); }
+  mk("rect", { x: 212, y: 197, width: 176, height: 31, rx: 2, fill: "#1f0f0a", stroke: "#c99a3e", "stroke-width": 1.6 }, B);
+  const hp = mk("text", { x: 300, y: 218, "font-size": 13.5, fill: "#f0c862", "text-anchor": "middle", "font-family": "Cormorant Garamond, Georgia, serif", "font-weight": 700, "letter-spacing": 3 }, B); hp.textContent = "ĐIỆN ĐẠI HÙNG";
+  for (const sg of [-1, 1]) {
+    const x0 = 300 + sg * 150;
+    mk("path", { d: `M${x0},190L${x0 - sg * 48},190Q${x0 - sg * 30},262 ${x0 - sg * 6},306L${x0},306Z`, fill: "#9a2416" }, B);
+    mk("path", { d: `M${x0},198L${x0 - sg * 40},198Q${x0 - sg * 24},258 ${x0 - sg * 4},296`, fill: "none", stroke: "#c4402a", "stroke-width": 1.2, opacity: .7 }, B);
+    mk("rect", { x: Math.min(x0, x0 - sg * 48), y: 190, width: 48, height: 8, fill: "#d1a24a" }, B);
+    mk("circle", { cx: x0 - sg * 6, cy: 300, r: 4, fill: "#d1a24a" }, B);
+  }
+
+  const A = L.altar;
+  mk("rect", { x: 188, y: 486, width: 224, height: 30, fill: "#5a1a10" }, A);
+  mk("rect", { x: 188, y: 486, width: 224, height: 3, fill: "#c99a3e" }, A);
+  mk("path", { d: "M196,500H404", stroke: "#c99a3e", "stroke-width": 1, opacity: .6 }, A);
+  buddha(A, 300, 444);
+  mk("rect", { x: 204, y: 516, width: 192, height: 8, fill: "#a2341f" }, A);
+  mk("rect", { x: 210, y: 524, width: 180, height: 50, fill: "#86210f" }, A);
+  mk("rect", { x: 218, y: 530, width: 164, height: 38, fill: "none", stroke: "#c99a3e", "stroke-width": 1.4 }, A);
+  mk("circle", { cx: 300, cy: 549, r: 11, fill: "none", stroke: "#c99a3e", "stroke-width": 1.4 }, A);
+  mk("path", { d: "M300,540V558M291,549H309", stroke: "#c99a3e", "stroke-width": 1.2 }, A);
+  for (const x of [246, 354]) mk("path", { d: `M${x - 18},549q9,-9 18,0q9,9 18,0`, fill: "none", stroke: "#c99a3e", "stroke-width": 1.2 }, A);
+  const bh = mk("g", { id: "batHuong", class: "tap" }, A);
+  mk("path", { d: "M280,500Q280,516 300,516Q320,516 320,500Z", fill: "url(#gBronze2)" }, bh);
+  mk("ellipse", { cx: 300, cy: 500, rx: 20, ry: 4, fill: "#d9ad5f" }, bh);
+  mk("ellipse", { cx: 300, cy: 500, rx: 16, ry: 2.8, fill: "#3a2208" }, bh);
+  STICKS = mk("g", { "pointer-events": "none" }, A);
+  for (const x of [222, 378]) {
+    mk("rect", { x: x - 6, y: 506, width: 12, height: 10, fill: "#c99a3e" }, A);
+    mk("rect", { x: x - 3.5, y: 478, width: 7, height: 28, fill: "#c3301c" }, A);
+    mk("path", { d: `M${x},466Q${x - 4},473 ${x},477Q${x + 4},473 ${x},466Z`, fill: "#ffd36b", class: "flame" }, A);
+    mk("circle", { cx: x, cy: 471, r: 22, fill: "url(#gCandle)" }, L.glow);
+  }
+  for (const x of [252, 348]) {
+    for (const [dx, top] of [[-6, 476], [5, 474], [0, 468]]) { mk("line", { x1: x, y1: 497, x2: x + dx, y2: top, stroke: "#4f7a3a", "stroke-width": 1.2 }, A); mk("ellipse", { cx: x + dx, cy: top - 4, rx: 3.4, ry: 5, fill: "#ec9fb0" }, A); }
+    mk("ellipse", { cx: x - 8, cy: 488, rx: 6, ry: 2.6, fill: "#5f8d43" }, A);
+    mk("path", { d: `M${x - 7},516Q${x - 10},502 ${x - 4},496L${x + 4},496Q${x + 10},502 ${x + 7},516Z`, fill: "#e6dcc6" }, A);
+    mk("path", { d: `M${x - 6},506H${x + 6}`, stroke: "#3d6aa0", "stroke-width": 1.4 }, A);
+  }
+
+  for (const z of [2.3, 1.8, 1.38, 1.04, .74]) for (const sg of [-1, 1]) {
+    const par = z < 1.1 ? L.near : L.cols, X = .62 * sg, x = PX(X, z), w = 34 / z, y1 = PY(z, hc), y2 = PY(z);
+    mk("rect", { x: (x - w / 2).toFixed(1), y: y1.toFixed(1), width: w.toFixed(1), height: (y2 - y1).toFixed(1), fill: "url(#gCol)" }, par);
+    let d = ""; for (let k = 0; k <= 40; k++) { const yy = y2 - 40 / z - k * ((y2 - y1) * .55) / 40, xx = x + Math.sin(k * .55) * w * .32; d += (k ? "L" : "M") + xx.toFixed(1) + "," + yy.toFixed(1); }
+    mk("path", { d, fill: "none", stroke: "#d8ac4f", "stroke-width": (w * .1).toFixed(1), opacity: .55, "stroke-linecap": "round" }, par);
+    mk("rect", { x: (x - w * .75).toFixed(1), y: (y2 - 12 / z).toFixed(1), width: (w * 1.5).toFixed(1), height: (12 / z).toFixed(1), fill: "#6b5a48" }, par);
+    if (z > 1 && z < 1.1) {
+      const t1 = PY(z, 780), t2 = PY(z, 300);
+      mk("rect", { x: (x - w * .3).toFixed(1), y: t1.toFixed(1), width: (w * .6).toFixed(1), height: (t2 - t1).toFixed(1), fill: "#1a0d08", stroke: "#c99a3e", "stroke-width": 1.2 }, par);
+      for (let k = 0; k < 7; k++) mk("rect", { x: (x - w * .12).toFixed(1), y: (t1 + 10 + k * (t2 - t1 - 20) / 7).toFixed(1), width: (w * .24).toFixed(1), height: ((t2 - t1) / 12).toFixed(1), fill: "#d8ac4f", opacity: .75, rx: 1 }, par);
+    }
+  }
+  for (const [X, z] of [[-.38, 2.05], [.38, 2.05], [-.38, 1.45], [.38, 1.45]]) {
+    const x = PX(X, z), y0 = PY(z, hc), y = PY(z, 720), r = 11 / z;
+    mk("line", { x1: x.toFixed(1), y1: y0.toFixed(1), x2: x.toFixed(1), y2: (y - r * 1.4).toFixed(1), stroke: "#140804", "stroke-width": 1.4 }, L.cols);
+    mk("rect", { x: (x - r * .7).toFixed(1), y: (y - r * 1.5).toFixed(1), width: (r * 1.4).toFixed(1), height: (r * .35).toFixed(1), fill: "#d1a24a" }, L.cols);
+    mk("ellipse", { cx: x.toFixed(1), cy: y.toFixed(1), rx: r.toFixed(1), ry: (r * 1.25).toFixed(1), fill: "#c4301c" }, L.cols);
+    mk("rect", { x: (x - r * .7).toFixed(1), y: (y + r * 1.15).toFixed(1), width: (r * 1.4).toFixed(1), height: (r * .35).toFixed(1), fill: "#d1a24a" }, L.cols);
+    mk("line", { x1: x.toFixed(1), y1: (y + r * 1.5).toFixed(1), x2: x.toFixed(1), y2: (y + r * 2.7).toFixed(1), stroke: "#d1a24a", "stroke-width": 1.2 }, L.cols);
+    mk("circle", { cx: x.toFixed(1), cy: y.toFixed(1), r: (r * 3.6).toFixed(1), fill: "url(#gCandle)" }, L.glow);
+  }
+
+  const F = L.floorItems;
+  const gt = mk("g", { id: "giaTri", class: "tap" }, F);
+  mk("ellipse", { cx: 157, cy: 612, rx: 26, ry: 7, fill: "#6e1a10" }, gt); mk("ellipse", { cx: 157, cy: 609, rx: 22, ry: 5, fill: "#a32b1a" }, gt);
+  const gb = mk("g", { id: "giaTriBody" }, gt);
+  mk("path", { d: "M139,590Q139,608 157,608Q175,608 175,590Z", fill: "url(#gBronze2)" }, gb);
+  mk("ellipse", { cx: 157, cy: 590, rx: 18, ry: 3.6, fill: "#d9ad5f" }, gb); mk("ellipse", { cx: 157, cy: 590, rx: 14.5, ry: 2.6, fill: "#3a2208" }, gb);
+  mk("line", { x1: 178, y1: 608, x2: 194, y2: 601, stroke: "#7a5634", "stroke-width": 3, "stroke-linecap": "round" }, gt);
+  const mo = mk("g", { id: "mo", class: "tap" }, F);
+  mk("ellipse", { cx: 212, cy: 615, rx: 22, ry: 6, fill: "#6e1a10" }, mo);
+  const mb = mk("g", { id: "moBody" }, mo);
+  mk("ellipse", { cx: 212, cy: 601, rx: 17, ry: 13, fill: "#a5542b" }, mb); mk("ellipse", { cx: 207, cy: 596, rx: 7, ry: 4, fill: "#c86d3d", opacity: .6 }, mb);
+  mk("path", { d: "M197,605Q212,611 227,605", stroke: "#4a1d0c", "stroke-width": 2.4, fill: "none", "stroke-linecap": "round" }, mb);
+  const kx = mk("g", { id: "kyXam", class: "tap" }, F);
+  mk("circle", { cx: 430, cy: 562, r: 34, fill: "none", stroke: "#f0c862", "stroke-width": 1.5, class: "pulse" }, kx);
+  mk("rect", { x: 404, y: 584, width: 52, height: 6, fill: "#8a2a16" }, kx);
+  mk("rect", { x: 408, y: 590, width: 4, height: 22, fill: "#6b1d10" }, kx); mk("rect", { x: 448, y: 590, width: 4, height: 22, fill: "#6b1d10" }, kx);
+  for (let i = 0; i < 7; i++) { const x = 424 + i * 2, r = (i - 3) * 3; mk("line", { x1: x, y1: 552, x2: x + r * .4, y2: 530 + (i % 2) * 3, stroke: "#dcb47a", "stroke-width": 1.4 }, kx); mk("line", { x1: x + r * .4, y1: 530 + (i % 2) * 3, x2: x + r * .43, y2: 526 + (i % 2) * 3, stroke: "#b5361f", "stroke-width": 1.6 }, kx); }
+  mk("rect", { x: 421, y: 548, width: 18, height: 36, rx: 3, fill: "#c79650" }, kx); mk("rect", { x: 433, y: 548, width: 6, height: 36, rx: 3, fill: "#a4743a" }, kx);
+  mk("path", { d: "M421,566H439", stroke: "#8a5f2a", "stroke-width": 1.2 }, kx);
+  mk("path", { d: "M442,584Q444,576 449,576Q452,580 452,584Z", fill: "#b3301d" }, kx); mk("path", { d: "M450,584Q452,577 457,577Q459,581 458,584Z", fill: "#e5b98a" }, kx);
+  [...SEATS].sort((a, b) => b[1] - a[1]).forEach(([x, z]) => {
+    const cx = PX(x, z), cy = PY(z);
+    mk("ellipse", { cx: cx.toFixed(1), cy: cy.toFixed(1), rx: (30 / z).toFixed(1), ry: (8 / z).toFixed(1), fill: "#5e160d" }, L.mats);
+    mk("ellipse", { cx: cx.toFixed(1), cy: (cy - 2 / z).toFixed(1), rx: (26 / z).toFixed(1), ry: (6 / z).toFixed(1), fill: "#8c2416" }, L.mats);
+    mk("ellipse", { cx: cx.toFixed(1), cy: (cy - 2 / z).toFixed(1), rx: (16 / z).toFixed(1), ry: (3.4 / z).toFixed(1), fill: "none", stroke: "#c99a3e", "stroke-width": (1 / z).toFixed(2), opacity: .8 }, L.mats);
+  });
+  mk("rect", { x: -1200, y: -800, width: 3000, height: 2600, fill: "#000", style: "opacity:calc(var(--shade) * .45)", "pointer-events": "none" }, L.shade);
+  L.glow.setAttribute("pointer-events", "none"); L.tags.setAttribute("pointer-events", "none");
+}
+
+/* ===================== NGƯỜI CÓ MẶT ===================== */
+const AO = ["#6a4790", "#8a3b32", "#2f6a70", "#7a6a3a", "#45577a", "#946b45", "#5e4a6e", "#3f6b4f", "#9a5a7a"];
+const SAN_SLOTS = [[300, 640], [206, 598], [394, 598], [258, 677], [342, 677], [300, 599], [116, 601], [484, 601], [212, 684], [388, 684], [160, 600], [440, 600]];
+const slotMap = { san: {}, dien: {} };
+const recentHuong = {};
+function assign(zone, ids, n, pri) {                // pri: người dùng hiện tại luôn được chỗ đầu tiên
+  const m = slotMap[zone];
+  for (const k in m) if (!ids.includes(k)) delete m[k];
+  if (pri && ids.includes(pri) && m[pri] !== 0) {
+    const holder = Object.keys(m).find(k => m[k] === 0), old = m[pri];
+    if (holder) { if (old === undefined) delete m[holder]; else m[holder] = old; }
+    m[pri] = 0;
+  }
+  const used = new Set(Object.values(m));
+  for (const u of ids) if (!(u in m)) { let i = 0; while (used.has(i) && i < n) i++; if (i < n) { m[u] = i; used.add(i); } }
+  return m;
+}
+function person(par, x, y, sc, uid, sit) {
+  const g = mk("g", { transform: `translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${sc.toFixed(3)})` }, par), c = AO[hash(uid) % AO.length];
+  mk("ellipse", { cx: 0, cy: 0, rx: 13, ry: 3, fill: "#000", opacity: .22 }, g);
+  if (sit) mk("path", { d: "M-15,0Q-16,-13 -9,-21L9,-21Q16,-13 15,0Z", fill: c }, g);
+  else { mk("path", { d: "M-8,0L-9,-22Q-8,-27 -4,-28L4,-28Q8,-27 9,-22L8,0Z", fill: c }, g); mk("rect", { x: -7.5, y: -4, width: 15, height: 4, fill: "#efe9dc", opacity: .75 }, g); }
+  const top = sit ? -21 : -28;
+  mk("circle", { cx: 0, cy: top - 6.5, r: 6.5, fill: "#241811" }, g);
+  if ((recentHuong[uid] || 0) > NET.now() - 25000) {
+    mk("line", { x1: 7, y1: top - 2, x2: 11, y2: top - 26, stroke: "#b5523a", "stroke-width": 1.2 }, g);
+    mk("circle", { cx: 11, cy: top - 26, r: 1.5, fill: "#ff6a2a" }, g);
+  }
+  return top - 13;
+}
+function placeTags(par, list) {                 // xếp bảng tên, đẩy lên trên khi chồng nhau
+  const placed = [];
+  list.sort((a, b) => (b.me ? 1 : 0) - (a.me ? 1 : 0) || b.y - a.y).forEach(t => {
+    const label = t.name.length > 16 ? t.name.slice(0, 15) + "…" : t.name, w = label.length * t.size * .56 + t.size * 1.3, h = t.size * 1.55;
+    let y = t.y;
+    for (let k = 0; k < 8; k++) {
+      const hit = placed.find(p => Math.abs(p.x - t.x) < (p.w + w) / 2 + 2 && Math.abs(p.y - y) < (p.h + h) / 2 + 1);
+      if (!hit) break; y = hit.y - (hit.h + h) / 2 - 2;
+    }
+    placed.push({ x: t.x, y, w, h });
+    nameTag(par, t.x, y, label, t.size, t.me);
+  });
+}
+function nameTag(par, x, y, name, size, me) {
+  const label = name.length > 16 ? name.slice(0, 15) + "…" : name, w = label.length * size * .56 + size * 1.3, h = size * 1.55;
+  mk("rect", { x: (x - w / 2).toFixed(1), y: (y - h * .8).toFixed(1), width: w.toFixed(1), height: h.toFixed(1), rx: (h / 2).toFixed(1), fill: me ? "#fff7e4" : "rgba(28,18,38,.74)", stroke: me ? "#c99a3e" : "none", "stroke-width": (size * .09).toFixed(2) }, par);
+  const t = mk("text", { x: x.toFixed(1), y: (y - h * .8 + h * .69).toFixed(1), "font-size": size.toFixed(1), "text-anchor": "middle", "font-weight": 500, fill: me ? "#271f33" : "#ffffff" }, par);
+  t.textContent = label;
+}
+function renderFigures() {
+  if (!SL.walkers) return;
+  const me = NET.uid || "toi", all = { ...NET.people };
+  if (entered && !all[me]) all[me] = { n: myName, z: scene };
+  if (entered && all[me]) all[me] = { ...all[me], z: scene };
+  const ids = Object.keys(all).sort((a, b) => (a === me ? -1 : b === me ? 1 : 0));
+  const by = { san: [], dien: [] };
+  for (const u of ids) (by[all[u].z] || by.san).push(u);
+  SL.walkers.innerHTML = ""; SL.tags.innerHTML = "";
+  const ms = assign("san", by.san, SAN_SLOTS.length, entered ? me : null);
+  const shown = by.san.filter(u => u in ms), tS = [];
+  shown.map(u => [u, SAN_SLOTS[ms[u]]]).sort((a, b) => a[1][1] - b[1][1]).forEach(([u, [x, y]]) => {
+    const sc = .92 + (y - 600) / 320, head = person(SL.walkers, x, y, sc, u, false);
+    tS.push({ x, y: y + head * sc - 4, name: all[u].n || "", size: 10.5 + (y - 600) / 34, me: u === me });
+  });
+  placeTags(SL.tags, tS);
+  if (by.san.length > shown.length) nameTag(SL.tags, 300, 714, `+${by.san.length - shown.length} người nữa`, 11, false);
+  DL.sitters.innerHTML = ""; DL.tags.innerHTML = "";
+  const md = assign("dien", by.dien, SEATS.length, entered ? me : null);
+  const shownD = by.dien.filter(u => u in md), tD = [];
+  shownD.map(u => [u, SEATS[md[u]]]).sort((a, b) => b[1][1] - a[1][1]).forEach(([u, [X, z]]) => {
+    const x = PX(X, z), y = PY(z) - 2 / z, sc = 1.7 / z, head = person(DL.sitters, x, y, sc, u, true);
+    tD.push({ x, y: y + head * sc - 3, name: all[u].n || "", size: Math.max(10.5, 15 / z), me: u === me });
+  });
+  placeTags(DL.tags, tD);
+  if (by.dien.length > shownD.length) nameTag(DL.tags, 300, 960, `+${by.dien.length - shownD.length} người nữa`, 13, false);
+}
+function onPeople() {
+  const all = Object.values(NET.people), nS = all.filter(p => (p.z || "san") === "san").length;
+  $("liveN").textContent = all.length; $("hudN").textContent = Math.max(1, all.length);
+  $("liveZ").textContent = `Bến sông ${nS} · Chính điện ${all.length - nS}`;
+  renderPpl(); renderFigures();
+}
+function renderPpl() {
+  const P = $("ppl"); P.innerHTML = "";
+  const all = Object.entries(NET.people);
+  for (const z of ["san", "dien"]) {
+    const list = all.filter(([, p]) => (p.z || "san") === z);
+    const h = document.createElement("div"); h.className = "grp"; h.textContent = `${ZN[z]} · ${list.length}`; P.append(h);
+    const w = document.createElement("div"); w.className = "ppl";
+    for (const [k, p] of list) { const s = document.createElement("span"); s.textContent = (p.n || "Khách") + (k === NET.uid ? " (bạn)" : ""); w.append(s); }
+    if (!list.length) { const s = document.createElement("span"); s.textContent = "Chưa có ai"; w.append(s); }
+    P.append(w);
+  }
+}
+
+/* ===================== NÉN HƯƠNG ===================== */
+function onHuong() { for (const h of NET.huong) if (h.u) recentHuong[h.u] = Math.max(recentHuong[h.u] || 0, h.t || 0); drawHuong(); renderFigures(); }
+function drawHuong() {
+  if (!STICKS) return;
+  STICKS.innerHTML = "";
+  const now = NET.now(), live = NET.huong.filter(h => now - h.t < HUONG_PHUT * 60000).slice(-13), mid = (live.length - 1) / 2;
+  live.forEach((h, i) => {
+    const left = Math.max(0, 1 - (now - h.t) / (HUONG_PHUT * 60000)), x = 300 + (i - mid) * 2.5, top = 499 - (8 + 42 * left);
+    const s = mk("g", { transform: `rotate(${((i - mid) * 1.9).toFixed(1)} ${x.toFixed(1)} 500)` }, STICKS);
+    mk("line", { x1: x.toFixed(1), y1: 500, x2: x.toFixed(1), y2: (top + 1.5).toFixed(1), stroke: "#b5523a", "stroke-width": 1.1 }, s);
+    mk("circle", { cx: x.toFixed(1), cy: top.toFixed(1), r: 1.3, fill: "#ff6a2a" }, s);
+    mk("circle", { cx: x.toFixed(1), cy: top.toFixed(1), r: 4.6, fill: "url(#gCandle)" }, s);
+    if (i % 2 === 0) mk("path", { d: `M${x.toFixed(1)},${(top - 2).toFixed(1)}q-6,-12 0,-24q6,-12 0,-24`, class: "smoke", style: `animation-delay:-${((i * .9) % 5).toFixed(1)}s` }, s);
+  });
+}
+setInterval(drawHuong, 30000);
+
+/* ===================== HOA ĐĂNG TRÊN SÔNG ===================== */
+const HOAS = [];
+function drawHoa(g) {
+  mk("ellipse", { cy: 8, rx: 9, ry: 16, fill: "url(#gGlow)", opacity: .3 }, g);
+  mk("circle", { cy: -7, r: 19, fill: "url(#gGlow)", opacity: .5 }, g);
+  mk("ellipse", { cy: 1.5, rx: 12.5, ry: 3.2, fill: "#5f8d43" }, g);
+  for (const [dx, r, c] of [[-8, -40, "#e98ea3"], [8, 40, "#e98ea3"], [-4, -16, "#f4b3c2"], [4, 16, "#f4b3c2"], [0, 0, "#fbd3dc"]]) mk("path", { d: "M0,0C-4.5,-4 -4.5,-11 0,-15C4.5,-11 4.5,-4 0,0Z", transform: `translate(${dx} 1) rotate(${r})`, fill: c }, g);
+  mk("rect", { x: -1.6, y: -12, width: 3.2, height: 5, fill: "#fff0d0" }, g);
+  mk("path", { d: "M0,-18Q-2.2,-15 0,-12.5Q2.2,-15 0,-18Z", fill: "#ffd36b", class: "flame" }, g);
+}
+function launchHoa(name, fromBen = true) {
+  if (!SL.hoadang) return;
+  if (HOAS.length > 14) { const o = HOAS.shift(); o.g.remove(); }
+  const g = mk("g", {}, SL.hoadang); drawHoa(g);
+  if (name) { const t = mk("text", { y: -27, "font-size": 9.5, "text-anchor": "middle", fill: "#fff6df", "font-weight": 500, style: "paint-order:stroke;stroke:rgba(40,20,34,.6);stroke-width:2.6px" }, g); t.textContent = name.length > 14 ? name.slice(0, 13) + "…" : name; }
+  const h = fromBen ? { g, x: 300 + rnd(-25, 25), y: 694, ty: rnd(735, 905), vx: rnd(5, 9), ph: rnd(0, 6), born: performance.now(), label: !!name }
+                    : { g, x: VIS.x0 + rnd(-40, (VIS.x1 - VIS.x0) * .6), y: 0, ty: rnd(735, 900), vx: rnd(4, 7), ph: rnd(0, 6), born: performance.now(), label: false };
+  if (!fromBen) h.y = h.ty;
+  HOAS.push(h);
+  if (fromBen && entered) AM.sfx("hoadang");
+}
+function updateHoa(dt, t) {
+  for (let i = HOAS.length - 1; i >= 0; i--) {
+    const h = HOAS[i];
+    h.y += (h.ty - h.y) * Math.min(1, dt * .35);
+    h.x += h.vx * dt * (h.y > 722 ? 1 : .15);
+    if (h.label && t - h.born > 45000) { const tx = h.g.querySelector("text"); if (tx) tx.remove(); h.label = false; }
+    h.g.setAttribute("transform", `translate(${h.x.toFixed(1)} ${(h.y + Math.sin(t / 700 + h.ph) * 1.2).toFixed(1)}) scale(${(.78 + (h.y - 690) / 560).toFixed(3)})`);
+    if (h.x > VIS.x1 + 60) { h.g.remove(); HOAS.splice(i, 1); }
+  }
+}
+
+/* ===================== CHUYỂN ĐỘNG ===================== */
+const boat = { x: 140, dir: 1 };
+let lastT = performance.now();
+function frame(t) {
+  const dt = Math.min(.05, (t - lastT) / 1000); lastT = t;
+  if (!document.hidden && BOATG && (scene === "san" || !entered)) {
+    boat.x += boat.dir * (reduced ? 4 : 9) * dt;
+    if (boat.x > VIS.x1 + 150) boat.dir = -1; else if (boat.x < VIS.x0 - 150) boat.dir = 1;
+    const by = 846 + Math.sin(t / 900) * 1.4;
+    BOATG.setAttribute("transform", `translate(${boat.x.toFixed(1)} ${by.toFixed(1)}) scale(${boat.dir} 1)`);
+    if (!reduced) OAR.setAttribute("transform", `rotate(${(Math.sin(t / 650) * 9).toFixed(1)} -70 -30)`);
+    BOATGLOW.setAttribute("transform", `translate(${(boat.x + 53 * boat.dir).toFixed(1)} ${(by - 31).toFixed(1)})`);
+    for (const b of BIRDS) {
+      b.x += b.v * dt * (reduced ? .4 : 1);
+      if (b.x > VIS.x1 + 60) { b.x = VIS.x0 - 60; b.y = rnd(110, 260); }
+      b.g.setAttribute("transform", `translate(${b.x.toFixed(1)} ${(b.y + Math.sin(t / 1300 + b.ph) * 6).toFixed(1)})`);
+    }
+    updateHoa(dt, t);
+  }
+  requestAnimationFrame(frame);
+}
+
+/* ===================== KHUNG NHÌN ===================== */
+function fit() {
+  const W = Math.max(1, stage.clientWidth), H = Math.max(1, stage.clientHeight), r = W / H;
+  const vb = entered ? [0, 0, 600, 1000] : [-80, 120, 760, 800], vr = vb[2] / vb[3], slice = r < vr;
+  for (const s of [$("san"), $("dien")]) { s.setAttribute("viewBox", vb.join(" ")); s.setAttribute("preserveAspectRatio", "xMidYMid " + (slice ? "slice" : "meet")); }
+  const sc = slice ? H / vb[3] : Math.min(W / vb[2], H / vb[3]), vw = W / sc;
+  VIS.x0 = vb[0] + vb[2] / 2 - vw / 2; VIS.x1 = VIS.x0 + vw;
+}
+addEventListener("resize", fit);
+
+/* ===================== CẢNH: BẾN SÔNG ⇄ CHÍNH ĐIỆN ===================== */
+const ICO_DIEN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 10.5L12 4l9.5 6.5"/><path d="M4.5 9.5c-.5 1.2-1.3 1.8-2.3 2M19.5 9.5c.5 1.2 1.3 1.8 2.3 2"/><path d="M5.5 10.5V20h13v-9.5M9.5 20v-5.5h5V20"/></svg>';
+const ICO_SONG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 15.5c2 0 2-1.4 4.5-1.4s2.5 1.4 4.5 1.4 2.5-1.4 4.5-1.4 2.5 1.4 4.5 1.4M3 19.5c2 0 2-1.4 4.5-1.4s2.5 1.4 4.5 1.4 2.5-1.4 4.5-1.4 2.5 1.4 4.5 1.4"/><path d="M6 11.5h12l-2 2.4H8zM9 11.5c0-2.4 1.4-4 3-4s3 1.6 3 4"/></svg>';
+function setGoBtn() { $("goIco").innerHTML = scene === "san" ? ICO_DIEN : ICO_SONG; $("goLbl").textContent = scene === "san" ? "Chính điện" : "Bến sông"; }
+function go(s) {
+  if (s === scene || busyGo) return;
+  const san = $("san"), dien = $("dien");
+  if (s === "dien") {
+    busyGo = true;
+    const sb = san.getBoundingClientRect(), tb = $("stairs").getBoundingClientRect();
+    san.style.transformOrigin = `${(tb.left + tb.width / 2 - sb.left).toFixed(0)}px ${(tb.top - sb.top).toFixed(0)}px`;
+    san.classList.add("zoom"); san.style.transform = "scale(4.2)";
+    setTimeout(() => { dien.classList.remove("off"); document.body.classList.add("dien"); }, 1250);
+    setTimeout(() => { san.classList.add("off"); san.classList.remove("zoom"); san.style.transform = ""; busyGo = false; }, 2200);
+  } else { san.classList.remove("off"); dien.classList.add("off"); document.body.classList.remove("dien"); }
+  scene = s; $("hudZ").textContent = ZN[s]; setGoBtn();
+  if (NET.people[NET.uid]) NET.people[NET.uid].z = s;
+  NET.zone(); renderFigures();
+}
+
+/* ===================== GIAO DIỆN ===================== */
+const tq = []; let tbusy = false;
+function toast(t) { tq.push(t); if (tq.length > 4) tq.shift(); if (!tbusy) nextToast(); }
+function nextToast() {
+  const t = tq.shift(); if (!t) { tbusy = false; return; }
+  tbusy = true; const e = $("toast"); e.textContent = t; e.classList.add("show");
+  setTimeout(() => { e.classList.remove("show"); setTimeout(nextToast, 420); }, 2600);
+}
+function openSheet(id) {
+  let any = false;
+  document.querySelectorAll(".sheet").forEach(s => { const on = s.id === id; s.classList.toggle("open", on); any = any || on; });
+  $("scrim").classList.toggle("on", any);
+}
+document.querySelectorAll("[data-close]").forEach(b => b.onclick = () => openSheet(""));
+$("scrim").onclick = () => openSheet("");
+addEventListener("keydown", e => { if (e.key === "Escape") openSheet(""); });
+function anim(id, cls) { const e = $(id); if (!e) return; e.classList.remove(cls); void e.getBBox(); e.classList.add(cls); }
+const ago = t => { const m = (NET.now() - t) / 60000; if (m < 1) return "vừa xong"; if (m < 60) return Math.floor(m) + " phút trước"; if (m < 1440) return Math.floor(m / 60) + " giờ trước"; const d = new Date(t); return d.getDate() + "/" + (d.getMonth() + 1); };
+function renderMsgs() {
+  const L = $("list"); L.innerHTML = "";
+  if (!NET.msgsLoaded) { L.innerHTML = '<div class="empty">Đang tải…</div>'; return; }
+  if (!NET.msgs.length) { L.innerHTML = '<div class="empty">Chưa có lời nguyện nào. Hãy thả hoa đăng đầu tiên.</div>'; return; }
+  for (const m of NET.msgs) {
+    const d = document.createElement("div"); d.className = "msg";
+    d.innerHTML = `<span class="n">${esc(m.n)}</span>${m.mau ? '<span class="tag-mau">mẫu</span>' : ""}<span class="t">${ago(m.t)}</span><p>${esc(m.m)}</p>`;
+    if (NET.admin && !m.mau) {
+      const x = document.createElement("button"); x.type = "button"; x.className = "del"; x.textContent = "Xóa";
+      x.onclick = () => { if (x.dataset.ok) NET.delMsg(m.id); else { x.dataset.ok = "1"; x.textContent = "Bấm lần nữa để xóa"; setTimeout(() => { delete x.dataset.ok; x.textContent = "Xóa"; }, 3000); } };
+      d.append(x);
+    }
+    L.append(d);
+  }
+}
+const cd = {};
+function ring(k, silent) {
+  if ((cd[k] || 0) > Date.now()) return;
+  cd[k] = Date.now() + (k === "mo" ? 280 : k === "lon" ? 4500 : 3000);
+  AM.sfx(k);
+  if (k === "lon") anim("bigBell", "swing"); else if (k === "giatri") anim("giaTriBody", "knock"); else anim("moBody", "knock");
+  if (!silent && k !== "mo") NET.send(k);
+}
+let cdHuong = 0;
+function thapHuong() {
+  if (Date.now() < cdHuong) { toast("Nén hương của bạn vẫn đang cháy"); return; }
+  cdHuong = Date.now() + 60000; $("bHuong").classList.add("wait"); setTimeout(() => $("bHuong").classList.remove("wait"), 60000);
+  recentHuong[NET.uid || "toi"] = NET.now();
+  NET.send("huong"); AM.sfx("huong"); renderFigures();
+  toast("Bạn vừa thắp một nén hương. Nam mô A Di Đà Phật");
+}
+function onEvent(v) {
+  if (!entered || !v) return;
+  const n = v.n || "Một người";
+  if (v.k === "lon") { AM.sfx("lon"); anim("bigBell", "swing"); toast(`${n} vừa thỉnh chuông`); }
+  else if (v.k === "giatri") { AM.sfx("giatri"); anim("giaTriBody", "knock"); toast(`${n} vừa thỉnh chuông gia trì`); }
+  else if (v.k === "huong") { if (v.u) recentHuong[v.u] = NET.now(); renderFigures(); toast(`${n} vừa thắp một nén hương`); }
+  else if (v.k === "xam") toast(`${n} vừa xin một quẻ xăm`);
+  else if (v.k === "loi") { toast(`${n} vừa thả một hoa đăng`); launchHoa(n); }
+}
+const CA_DAO = [
+  "Gió đưa cành trúc la đà / Tiếng chuông Thiên Mụ, canh gà Thọ Xương",
+  "Đường vô xứ Huế quanh quanh / Non xanh nước biếc như tranh họa đồ",
+  "Núi Ngự Bình trước tròn sau méo / Sông An Cựu nắng đục mưa trong",
+  "Đò từ Đông Ba, đò qua Đập Đá, đò về Vỹ Dạ, thẳng ngã ba Sình"
+];
+function bindScene() {
+  $("lauChuong").addEventListener("click", () => { if (entered) ring("lon"); });
+  $("towerG").addEventListener("click", () => { if (entered) go("dien"); });
+  $("stairs").addEventListener("click", () => { if (entered) go("dien"); });
+  $("boat").addEventListener("click", () => { if (entered) toast("Cô lái đò hò: “" + CA_DAO[Math.floor(Math.random() * CA_DAO.length)] + "”"); });
+  $("giaTri").addEventListener("click", () => ring("giatri"));
+  $("mo").addEventListener("click", () => ring("mo"));
+  $("kyXam").addEventListener("click", () => XAM.open());
+  $("batHuong").addEventListener("click", thapHuong);
+  $("phat").addEventListener("click", () => toast("Nam mô Bổn Sư Thích Ca Mâu Ni Phật"));
+  $("bChuong").onclick = () => ring(scene === "san" ? "lon" : "giatri");
+  $("bHuong").onclick = () => { if (scene !== "dien") { go("dien"); setTimeout(thapHuong, 2200); } else thapHuong(); };
+  $("bXam").onclick = () => { if (scene !== "dien") { go("dien"); setTimeout(() => XAM.open(), 2100); } else XAM.open(); };
+  $("bHoa").onclick = () => { openSheet("sheetLoi"); renderMsgs(); };
+  $("bGo").onclick = () => go(scene === "san" ? "dien" : "san");
+  $("bPeople").onclick = () => { renderPpl(); openSheet("sheetPpl"); };
+  $("send").onclick = async () => {
+    const m = $("fMsg").value.trim();
+    if (!m) { $("fNote").textContent = "Hãy viết vài chữ trước khi thả"; $("fMsg").focus(); return; }
+    if (!NET.uid) { $("fNote").textContent = "Đang kết nối, thử lại sau giây lát"; return; }
+    $("send").disabled = true;
+    try {
+      await NET.sendMsg(m);
+      $("fMsg").value = ""; $("fNote").textContent = "Tối đa 200 ký tự"; openSheet("");
+      const wasDien = scene !== "san"; if (wasDien) go("san");
+      setTimeout(() => launchHoa(myName), wasDien ? 700 : 150);
+      toast("Hoa đăng của bạn đã được thả trên sông Hương");
+    } catch (e) { $("fNote").textContent = "Chưa gửi được, thử lại nhé"; }
+    $("send").disabled = false;
+  };
+}
+const ICO_ON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M15.5 9.2a4 4 0 0 1 0 5.6M18 6.8a7.4 7.4 0 0 1 0 10.4"/></svg>';
+const ICO_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>';
+function soundUI() {
+  $("snd1").textContent = "Âm thanh: " + (AM.on ? "bật" : "tắt");
+  $("snd2").innerHTML = (AM.on ? ICO_ON : ICO_OFF) + `<span>${AM.on ? "Nhạc Huế" : "Đang tắt"}</span>`;
+}
+$("snd1").onclick = () => { AM.setOn(!AM.on); soundUI(); };
+$("snd2").onclick = () => { AM.setOn(!AM.on); soundUI(); };
+
+/* ===================== CHẾ ĐỘ XEM THỬ (chưa có máy chủ) ===================== */
+function initSolo(lyDo) {
+  NET.mode = "solo"; NET.uid = "toi"; $("solo").hidden = false;
+  if (lyDo) $("solo").textContent = lyDo;
+  const now = NET.now();
+  [["Minh Anh", "san"], ["Bảo Trâm", "san"], ["Quốc Huy", "dien"], ["Thu Hà", "dien"], ["Phước", "san"], ["Ngọc Lan", "dien"]].forEach(([n, z], i) => { NET.people["mau" + i] = { n: n + " (mẫu)", z, mau: true }; });
+  let own = []; try { own = JSON.parse(localStorage.getItem("tcm_loi") || "[]"); } catch (e) {}
+  NET.msgs = [...own,
+    { id: "m1", n: "Bảo Trâm", m: "Cầu cho mẹ mau khỏe, cả nhà bình an.", t: now - 38 * 60000, mau: true },
+    { id: "m2", n: "Quốc Huy", m: "Mong năm nay công việc thuận lợi, anh em trong phòng luôn vui vẻ.", t: now - 3 * 3600000, mau: true },
+    { id: "m3", n: "Thu Hà", m: "Cảm ơn mọi người đã luôn ở bên. Bình an nhé!", t: now - 26 * 3600000, mau: true }];
+  NET.msgsLoaded = true;
+  NET.huong = [{ u: "mau2", t: now - 4 * 60000 }, { u: "mau3", t: now - 13 * 60000 }, { u: "mau5", t: now - 22 * 60000 }];
+  NET.send = k => { if (k === "huong") { NET.huong.push({ u: NET.uid, n: myName, t: NET.now() }); onHuong(); } return Promise.resolve(); };
+  NET.sendMsg = m => {
+    NET.msgs.unshift({ id: "t" + Date.now(), u: NET.uid, n: myName, m, t: NET.now() });
+    try { localStorage.setItem("tcm_loi", JSON.stringify(NET.msgs.filter(x => !x.mau).slice(0, 30))); } catch (e) {}
+    renderMsgs(); return Promise.resolve();
+  };
+  NET.delMsg = () => {};
+  NET.join = () => { NET.people[NET.uid] = { n: myName, z: scene }; onPeople(); demoLoop(); };
+  NET.zone = () => { if (NET.people[NET.uid]) NET.people[NET.uid].z = scene; onPeople(); };
+  onPeople(); onHuong(); renderMsgs();
+}
+function demoLoop() {
+  setTimeout(function tick() {
+    if (NET.mode !== "solo") return;
+    const ids = Object.keys(NET.people).filter(k => NET.people[k].mau), id = ids[Math.floor(Math.random() * ids.length)], p = NET.people[id], r = Math.random();
+    if (r < .25) onEvent({ k: "lon", n: p.n, u: id });
+    else if (r < .5) { NET.huong.push({ u: id, t: NET.now() }); onHuong(); onEvent({ k: "huong", n: p.n, u: id }); }
+    else if (r < .7) onEvent({ k: "xam", n: p.n, u: id });
+    else { p.z = p.z === "san" ? "dien" : "san"; onPeople(); }
+    setTimeout(tick, rnd(45000, 80000));
+  }, rnd(22000, 32000));
+}
+
+/* ===================== FIREBASE (khi đã dán cấu hình) ===================== */
+let FB = null, presRef = null, listening = false;
+async function initFirebase() {
+  try {
+    const SDK = "https://www.gstatic.com/firebasejs/11.0.2/";
+    const [A, U, D] = await Promise.all([import(SDK + "firebase-app.js"), import(SDK + "firebase-auth.js"), import(SDK + "firebase-database.js")]);
+    const app = A.initializeApp(CAU_HINH.firebase), auth = U.getAuth(app), db = D.getDatabase(app);
+    FB = { ...U, ...D, auth, db }; NET.mode = "firebase";
+    NET.send = k => (FB && NET.uid) ? D.push(D.ref(db, "events"), { u: NET.uid, n: myName || "Khách", k, t: D.serverTimestamp() }).catch(e => console.warn(e)) : Promise.resolve();
+    NET.sendMsg = m => D.push(D.ref(db, "loinguyen"), { u: NET.uid, n: myName, m, t: D.serverTimestamp() });
+    NET.delMsg = id => D.remove(D.ref(db, "loinguyen/" + id)).catch(() => toast("Chưa xóa được, kiểm tra quyền quản trị"));
+    NET.join = () => startPresence();
+    NET.zone = () => { if (presRef) D.set(presRef, pres()).catch(() => {}); };
+    D.onValue(D.ref(db, ".info/serverTimeOffset"), s => { NET.offset = s.val() || 0; });
+    U.onAuthStateChanged(auth, user => {
+      if (!user) { U.signInAnonymously(auth).catch(e => { console.warn(e); fbFail(); }); return; }
+      if (presRef && NET.uid !== user.uid) presRef = null;
+      NET.uid = user.uid;
+      NET.admin = !!CAU_HINH.emailQuanTri && !!user.email && user.email.toLowerCase() === CAU_HINH.emailQuanTri.toLowerCase();
+      $("adm").textContent = NET.admin ? "Thoát quản trị" : "Quản trị";
+      if (NET.joined) startPresence();
+      if (!listening) { listening = true; listen(); setTimeout(cleanup, 8000); }
+      renderMsgs();
+    });
+    if (CAU_HINH.emailQuanTri) $("adm").hidden = false;
+  } catch (e) { console.warn("Firebase", e); fbFail(); }
+}
+function fbFail() { if (NET.mode === "solo" && NET.uid) return; FB = null; initSolo("Chưa kết nối được máy chủ nên trang đang chạy bản xem thử trên máy này."); if (NET.joined) NET.join(); }
+const pres = () => ({ n: myName, z: scene, t: FB.serverTimestamp() });
+let connWatch = false, online = false;
+function writePresence() { const r = presRef; if (!r || !online) return; FB.onDisconnect(r).remove().then(() => FB.set(r, pres())).catch(e => console.warn(e)); }
+function startPresence() {
+  if (!FB || !NET.uid || presRef) return;
+  presRef = FB.ref(FB.db, "presence/" + NET.uid);
+  if (!connWatch) { connWatch = true; FB.onValue(FB.ref(FB.db, ".info/connected"), s => { online = s.val() === true; writePresence(); }); }
+  else writePresence();
+}
+async function dropPresence() {                   // xoá dấu "có mặt" khi còn đăng nhập tài khoản cũ
+  const r = presRef; presRef = null;
+  if (r) { try { await FB.onDisconnect(r).cancel(); } catch (e) {} try { await FB.remove(r); } catch (e) {} }
+}
+function listen() {
+  const { db, ref, query, orderByChild, startAt, limitToLast, onValue, onChildAdded } = FB;
+  let first = true, firstMsgs = true;
+  onValue(ref(db, "presence"), s => {
+    const nx = {}; s.forEach(c => { const v = c.val(); if (v && v.n) nx[c.key] = v; });
+    if (!first && entered) for (const k in nx) if (!NET.people[k] && k !== NET.uid) toast(`${nx[k].n} vừa ghé chùa`);
+    NET.people = nx; first = false; onPeople();
+  });
+  const t0 = NET.now();
+  onValue(query(ref(db, "events"), orderByChild("t"), startAt(t0 - HUONG_PHUT * 60000)), s => {
+    const hs = []; s.forEach(c => { const v = c.val(); if (v && v.k === "huong") hs.push(v); }); NET.huong = hs; onHuong();
+  });
+  onChildAdded(query(ref(db, "events"), orderByChild("t"), startAt(t0)), s => { const v = s.val(); if (v && v.u !== NET.uid) onEvent(v); });
+  onValue(query(ref(db, "loinguyen"), orderByChild("t"), limitToLast(60)), s => {
+    const a = []; s.forEach(c => { a.push({ id: c.key, ...c.val() }); }); a.reverse();
+    if (!firstMsgs) for (const m of a) if (m.u !== NET.uid && !NET.msgs.find(x => x.id === m.id)) onEvent({ k: "loi", n: m.n });
+    firstMsgs = false; NET.msgs = a; NET.msgsLoaded = true; renderMsgs();
+  });
+}
+async function cleanup() {                         // dọn sự kiện cũ hơn 1 ngày cho cơ sở dữ liệu gọn nhẹ
+  try {
+    const { db, ref, query, orderByChild, endAt, limitToFirst, get, remove } = FB;
+    const s = await get(query(ref(db, "events"), orderByChild("t"), endAt(NET.now() - 86400000), limitToFirst(40)));
+    s.forEach(c => { remove(c.ref).catch(() => {}); });
+  } catch (e) {}
+}
+$("adm").onclick = async () => {
+  if (!FB) return;
+  if (NET.admin) { await dropPresence(); await FB.signOut(FB.auth); toast("Đã thoát quản trị"); return; }
+  try {
+    await dropPresence();
+    const r = await FB.signInWithPopup(FB.auth, new FB.GoogleAuthProvider());
+    if ((r.user.email || "").toLowerCase() !== CAU_HINH.emailQuanTri.toLowerCase()) { toast("Tài khoản này không có quyền quản trị"); await dropPresence(); await FB.signOut(FB.auth); }
+    else toast("Đã vào chế độ quản trị");
+  } catch (e) {
+    if (NET.joined) startPresence();
+    if (e && e.code === "auth/popup-blocked") FB.signInWithRedirect(FB.auth, new FB.GoogleAuthProvider()); else toast("Chưa đăng nhập được");
+  }
+};
+
+/* ===================== VÀO CHÙA ===================== */
+function enter() {
+  const n = $("joinName").value.trim().replace(/\s+/g, " ");
+  if (!n) { $("joinNote").textContent = "Nhập tên để mọi người biết bạn đã ghé nhé."; $("joinName").focus(); return; }
+  myName = n.slice(0, 24); try { localStorage.setItem("tcm_ten", myName); } catch (e) {}
+  entered = true; AM.start(); soundUI();
+  document.body.appendChild(stage); document.body.classList.add("inside"); fit(); scrollTo(0, 0);
+  NET.joined = true; NET.join(); renderFigures();
+  setTimeout(() => ring("lon", true), 900);
+  setTimeout(() => $("welcome").classList.add("show"), 400);
+  setTimeout(() => $("welcome").classList.remove("show"), 4300);
+}
+$("enter").onclick = enter;
+$("joinName").addEventListener("keydown", e => { if (e.key === "Enter") enter(); });
+document.addEventListener("visibilitychange", () => { if (!document.hidden && entered) AM.unlock(); });
+
+/* ===================== KHỞI ĐỘNG ===================== */
+$("tieuDe").textContent = CAU_HINH.tieuDe; $("moTa").textContent = CAU_HINH.moTa;
+try { $("joinName").value = localStorage.getItem("tcm_ten") || ""; } catch (e) {}
+buildSan(); buildDien(); bindScene(); setGoBtn(); soundUI();
+fit(); applyTime(); setInterval(applyTime, 60000);
+if (GIO < 5.6 || GIO > 18.3) for (let i = 0; i < 2; i++) launchHoa(null, false);
+if (CAU_HINH.firebase && CAU_HINH.firebase.databaseURL) initFirebase(); else initSolo();
+requestAnimationFrame(frame);
+
+</script>
+</body>
+</html>
